@@ -1,0 +1,685 @@
+/*
+	Theme Name: Idaho Webmaster using Bootstrap 4
+	Theme URL: https://webmaster.idaho.gov
+	Description: Official modern WordPress theme for Idaho state agency websites.
+	Author: Access Idaho
+	Author URI: https://accessidaho.org
+	Version: 3.0.0
+	Text Domain: webmaster-bs4
+*/
+
+html, body {
+	background-color: #ffffff;
+	background: #ffffff;
+	font-family: 'Rubik', sans-serif;
+	letter-spacing: .5px;
+	font-weight: 300;
+}
+
+body {
+  	overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
+	letter-spacing: .5px;
+}
+
+h1, .h1 {
+	font-size: 2.25rem;
+}
+
+h2, .h2 {
+	font-size: 2rem;
+}
+
+h3, .h3 {
+	font-size: 1.75rem;
+}
+
+h4, .h4 {
+	font-size: 1.5rem;
+}
+
+h5, .h5 {
+	font-size: 1.25rem;
+}
+
+h6, .h6 {
+	font-size: 1rem;
+}
+
+.entry-title {
+	padding-bottom: 30px;
+  	padding-top: 10px;
+}
+
+.site-description {
+	font-family: 'Lato', sans-serif;
+	font-weight: 700;
+	letter-spacing: .75px;
+	color: #fff;
+	margin: 0;
+	padding: 0;
+}
+
+.wt-shadow {
+  	-webkit-filter: drop-shadow(0px 0px 5px #111);
+            filter: drop-shadow(0px 0px 5px #111);
+}
+
+.blk-shadow {
+	-webkit-filter: drop-shadow(0px 0px 5px #fff);
+		    filter: drop-shadow(0px 0px 5px #fff);
+}
+
+.black, .black > a { color: #000 !important; }
+
+#content {
+	padding-top: 20px;
+	background-color: #fff;
+}
+
+a {
+    opacity: 1;
+    transition: all 0.3s ease 0s;
+}
+
+a:hover {
+  	text-decoration: underline;
+  	opacity: 1;
+  	cursor: pointer;
+}
+
+a > i {
+	opacity: 1;
+	transition: all 0.3s ease 0s;
+}
+
+a > i:hover {
+	color: #aaa;
+	opacity: 1;
+}
+
+.bg-light {
+    background-color: #eee !important;
+}
+
+.skip-link {
+	position: absolute;
+	top: -40px;
+	left: 0;
+	/* background: #BF1722; */
+	color: white;
+	padding: 8px;
+	z-index: 100;
+}
+
+.skip-link:focus {
+	top: 0;
+}
+
+.collapse.show { width: 100%; }
+.iframe { width: 100%; }
+
+/* ================ TOP GRAY NAV ================ */
+.top-navigation {
+	background: #eee;
+	color: #000;
+	height: 31px;
+	line-height: 30px;
+	vertical-align: middle;
+	position: relative;
+	z-index: 1;
+}
+
+#top-navigation {
+	float: right;
+}
+
+.top-menu > .menu-item {
+	display: inline;
+}
+
+.top-menu > li > a { color: #000; }
+
+.top-menu > li > a:hover {
+	background-color: #ddd;
+  	color: #000;
+}
+
+.tagline {
+	font-size: small;
+	padding: 0 10px;
+	font-weight: 500;
+}
+
+.idaho-logo {
+	margin-top: -3px;
+}
+/* ================ end of TOP GRAY NAV ================ */
+
+
+/* ================ HEADER ================ */
+#masthead > .site-branding {
+	border: none;
+	min-height: 300px;
+}
+
+#masthead .logo {
+	padding-top: 70px;
+}
+
+#masthead .logo img {
+	max-height: 250px;
+	padding-top: 0px;
+}
+
+#masthead .mobile-nav button {
+  	border-color: #eee;
+  	background: #fff;
+  	color: #000;
+}
+
+.logo > img {
+	width: 100%;
+	min-width: 100%;
+	max-width: 250px;
+}
+
+#masthead .header-text {
+	padding-top: 70px;
+	width: auto;
+}
+
+#masthead .header-background {
+	background-size: cover !important;
+	background-position: center !important;
+}
+
+.search-form {
+	max-width: 300px;
+	float: right;
+}
+
+.header-text { margin-top: 20px; }
+
+.search-form {
+	padding-top: 110px;
+}
+.gsc-control-cse {
+	border       : 4px solid transparent !important;
+	border-radius: 0px !important;
+	background   : transparent !important;
+}
+
+.heading-sm, .site-title a {
+	color: #fff !important;
+	margin: auto;
+}
+
+.site-title a:hover {
+	text-decoration: none;
+}
+/* ================ end of HEADER ================ */
+
+/* ================ NAVIGATION ================ */
+.nav > .active > a { color: #000; }
+
+.link, a { color: #007ea7; }
+
+.nav-link { 
+	display: inline !important; 
+	padding: .65rem !important;
+}
+
+.navbar-toggler { background-color: #fff !important; }
+
+.dropdown-menu {
+	border-radius: 0 !important;
+	border: none !important;
+	background-color: #eeeeee !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	margin-top: 0.45rem !important;
+}
+
+.dropdown-item {
+	background-color: #eeeeee !important;
+	border: none !important;
+	font-weight: 300;
+}
+
+.dropdown-menu a:hover, .dropdown-menu a:focus, .dropdown-menu a:active {
+	background-color: #ddd !important;
+}
+
+ul#menu-top.top-menu.nav > li > a.nav-link {
+	padding: .5rem !important;
+}
+
+a.nav-link {
+	color: #000;
+}
+
+a.nav-link:hover, a.nav-link:active {
+	background-color: #dcdcdc;
+	color: #000;
+	/* padding-bottom: 0.35rem !important; */
+}
+
+.dropdown-toggle::after {
+	margin-right: .5rem;
+}
+
+.navbar-search.btn-light {
+	padding: .25rem .75rem;
+	font-size: 1.25rem;
+	line-height: 1;
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: .25rem;
+	cursor: pointer;
+}
+
+.navbar-search.btn-light:hover {
+	background-color: #fff;
+	border-color: #fff;
+}
+/* ================ end of NAVIGATION ================ */
+
+
+/* ================ BODY ================ */
+.content-wrapper {
+  	overflow-x: hidden;
+}
+
+.breadcrumb {
+	background-color: transparent !important;
+	margin: 0 0 0px;
+	padding: 8px 15px;
+	font-size: smaller;
+	box-sizing: border-box;
+}
+
+li.breadcrumb-item {
+	display: inline-block;
+}
+/* ================ end of BODY ================ */
+
+
+/* ================ FOOTER ================ */
+.site-footer {
+    background: #002f56;
+}
+
+#usa-map, .logo, .header-text, {
+	float: left;
+	overflow: hidden;
+}
+
+#colophon {
+	color: #fff;
+	padding-top: 20px;
+}
+
+footer { margin-top: 30px; }
+
+.footer-widget {
+	float: left;
+}
+
+.footer-navigation a { 
+	color: #fff !important;
+}
+
+.footer-menu > .menu-item {
+	line-height: 2;
+}
+
+.footer-menu > .menu-item > a {
+	color: #fff;
+}
+
+.footer-links {
+	font-size: smaller;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	align-items: center;
+}
+
+.footer-links > a {
+	padding-left: 20px;
+	padding-right: 20px;
+	color: #fff !important;;
+}
+
+.social { 
+	padding: 5px; 
+	color: #fff;
+}
+
+.footer-links > a:hover { color: #fff !important; }
+/* ================ end of FOOTER ================ */
+
+#warning {
+	background-color: #FEEFB3;
+	border-color: #FDBD4E;
+	color: #7D6502;
+	padding: 5px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 0px;
+	text-align: center;
+  margin-top: 80px;
+}
+
+.yellow-warning { color:#7D6502; }
+
+.widget-title { font-size: 1.3rem; }
+
+/* ================ Flex styles ================ */
+.d-flex {
+  	display: flex;
+	display: -ms-flexbox;
+}
+
+.row {
+  	display: flex;
+	display: -ms-flexbox;
+}
+
+/*========== Media Styles ============*/
+@media (min-width: 990px) {
+	#colophon {
+		background-image: url('img/seal.png');
+		background-repeat: no-repeat;
+		background-blend-mode: luminosity;
+		background-size: 300px 182px;
+		background-position: 75% 100%;
+	}
+}
+
+/* IE10+ CSS here */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .align-items-center {
+		padding-top: 30px;
+	}
+	.justify-content-center {
+		text-align: center;
+		display: block;
+		width: 100%;
+	}
+	#masthead .header-text {
+		text-shadow: 0px 0px 5px #000;
+	}
+	.navbar>.container, .navbar>.container-fluid {
+    	display: block;
+		width: 100%;
+		text-align: center;
+	}
+	.tagline {
+		font-weight: bold;
+	}
+	.site-description {
+		font-weight: bold;
+	}
+	.search-form{
+		float: none;
+	}
+}
+
+@media (min-width: 1200px) {
+	td.gsc-input {
+		min-width: 180px;
+	}
+}
+
+@media (max-width: 1199px) {
+	.nav > li > a {
+    	padding: 10px 8px;
+	}
+	h1, .h1 {
+		font-size: 2rem;
+	}
+}
+
+@media (min-width: 992px) {
+	#primary {
+		min-height: 400px;
+	}
+	.navbar-expand-lg .navbar-nav .nav-link {
+		padding-right: 1rem;
+		padding-left: 1rem;
+	}
+}
+
+@media (max-width: 991px) {
+	.hidden-sm {
+		display: none;
+	}
+
+	.container {
+    	max-width: 100% !important;
+	}
+
+	#masthead > .site-branding {
+    	min-height: 250px;
+	}
+
+	.nav > li > a {
+    	padding: 10px 10px;
+	}
+
+	ul#menu-top.top-menu.nav > li > a.nav-link, ul#menu-top-menu.top-menu.nav > li > a.nav-link {
+  		padding-top: 0px !important;
+		padding-bottom: 0px !important;
+	}
+
+	#main-navigation {
+		margin-left: -20px;
+		margin-right: -20px;
+		padding-right: 0px;
+		padding-left: 0px;
+		padding-bottom: 0px;
+		overflow-y: hidden;
+		overflow-x: hidden;
+	}
+
+	#main-navigation > .container {
+		padding-right: 0px;
+	}
+
+	.nav > li {
+    	display: block;
+	}
+
+	ul#menu-main, ul#menu-main-menu {
+		margin-left: 0em;
+		margin-right: 0em;
+	}
+
+	#menu-main > li, #menu-main-menu > li {
+    	border-top: 1px solid #ddd;
+	}
+
+	#menu-main > li > a, #menu-main-menu > li > a {
+    	padding-left: 1.5rem !important;
+	}
+
+	.nav-link {
+    	display: block !important;
+	}
+
+	.navbar-toggler {
+		float: none;
+    	/* position: absolute; */
+    	right: .7em;
+    	padding: .25rem .75rem;
+	}
+
+	.navbar-expand-lg {
+		border-bottom: solid 2px #ddd;
+    	padding-bottom: 7px;
+	}
+
+	.search-form {
+    	padding-top: 0px;
+	}
+
+	.cse .gsc-control-cse, .gsc-control-cse {
+    	padding-bottom: .25em;
+	}
+
+	ul#menu-main, ul#menu-main-menu {
+		width: 100%;
+	}
+
+	.dropdown-menu {
+    	margin-top: 0rem !important;
+	}
+
+	.dropdown-item {
+    	padding-left: 2rem;
+	}
+
+	#main-navigation {
+		margin-top: 7px;
+	}
+
+	.sub-footer-menu {
+    	padding-left: 0px;
+	}
+}
+
+@media (min-width: 768px) {}
+
+@media (max-width: 767px) {
+	.hidden-xs {
+		display: none;
+	}
+
+	.site-title {
+    	font-size: 1.25rem;
+	}
+
+	.entry-title {
+    	padding-bottom: 10px;
+    	padding-top: 0px;
+	}
+
+	#masthead > .site-branding {
+    	min-height: 130px;
+	}
+
+	#masthead .logo {
+    	padding-top: 10px;
+		margin-left: auto;
+		margin-right: auto;
+		position: relative;
+		float: none;
+	}
+
+	#masthead .header-text {
+    	padding-top: 0px;
+		display: inline-block;
+	}
+
+	.site-branding {
+		padding-top: 20px;
+	}
+
+	.logo-col {
+		padding-right: 0px;
+	}
+
+	#masthead .mobile-nav {
+    	float: right;
+		width: 100%;
+		margin-top: 30px;
+	}
+
+	#masthead .mobile-nav button {
+		padding: 10px;
+		position: relative;
+		float: right;
+	}
+
+	.d-block {
+		background-color: #eee;
+		background: #eee;
+	}
+
+	.site-footer .footer-navigation ul.footer-menu li a {
+    	font-size: 14px;
+    	margin: 10px 10px 0 0;
+	}
+
+	.site-footer {
+		padding: 20px 0px;
+	}
+
+	#footer-widgets {
+		text-align: center;
+	}
+
+	.footer-links {
+		text-align: center;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+}
+
+@media (max-width: 575px) {
+	#masthead .logo img {
+		padding-top: 10px;
+		max-width: 50%;
+		width: 50%;
+		min-width: 50%;
+		position: relative;
+		display: block;
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	#masthead .header-text {
+  		padding-top: 0px;
+		text-align: center;
+		width: 100%;
+		padding-bottom: 10px;
+	}
+
+	.site-branding {
+		padding-top: 0px;
+	}
+
+	.footer-widget {
+    	text-align: center;
+	}
+}
+
+@media screen and (min-width: 576px) {
+	.has-mega-menu .container-sm {
+		width: 540px;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.has-mega-menu .container-md {
+		width: 720px;
+	}
+}
+
+@media screen and (min-width: 992px) {
+	.has-mega-menu .container-lg {
+		width: 960px;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.has-mega-menu .container-xl {
+		width: 1140px;
+	}
+}
