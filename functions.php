@@ -390,6 +390,7 @@ require get_template_directory() . '/inc/meta-boxes.php';
 require get_template_directory() . '/inc/shortcodes.php';
 require get_template_directory() . '/inc/template-tags.php';
 
+/*
 require_once dirname(__FILE__) . '/inc/class-tgm-plugin-activation.php';
 add_action('tgmpa_register', 'webmaster_register_required_plugins');
 function webmaster_register_required_plugins() {
@@ -432,4 +433,5 @@ function webmaster_register_required_plugins() {
         )
     );
     tgmpa($plugins, $config);
-}
+}	
+*/

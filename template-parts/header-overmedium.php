@@ -10,7 +10,7 @@
 		if (get_theme_mod('idaho_black_logo', true)) {
 			echo ' black blk-shadow">';
 		} else {
-			echo ' heading-sm wt-shadow">';
+			echo ' heading-sm shadow">';
 		}
 		?>
 	<?php bloginfo('description'); ?></p>
@@ -20,7 +20,7 @@
 		if (get_theme_mod('idaho_black_logo', true)) {
 			echo ' black blk-shadow">';
 		} else {
-			echo ' site-title wt-shadow">';
+			echo ' site-title shadow">';
 		}
 		?>
 		<a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></h1>
@@ -30,7 +30,7 @@
 		if (get_theme_mod('idaho_black_logo', true)) {
 			echo ' black blk-shadow">';
 		} else {
-			echo ' site-title wt-shadow">';
+			echo ' site-title shadow">';
 		}
 		?>
 		<a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>

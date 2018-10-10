@@ -84,7 +84,7 @@
 								if (get_theme_mod('idaho_black_logo', true)) {
 										echo ' blk-shadow">';
 								} else {
-									echo ' wt-shadow">';
+									echo ' shadow">';
 								}
 								?>
 							</a>
