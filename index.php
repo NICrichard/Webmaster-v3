@@ -1,9 +1,4 @@
 <?php
-/**
- * The main template file.
- *
- */
-
 defined('ABSPATH') || exit;
 get_header(); 
 ?>
