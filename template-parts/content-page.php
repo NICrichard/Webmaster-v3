@@ -1,9 +1,3 @@
-<?php
-/**
- * Template part for displaying page content in page.php.
- *
- */
-?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php if ('on' !== get_post_meta(get_the_ID(), '_idaho_page_title', 'off')) : ?>
 		<header class="entry-header">

@@ -50,8 +50,8 @@ if (!function_exists('idaho_webmaster_widgets_init')) :
 			'description' 	=> '',
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' 	=> '</aside>',
-			'before_title' 	=> '<h3 class="widget-title">',
-			'after_title' 	=> '</h3>',
+			'before_title' 	=> '<div class="card-heading"><h3 class="card-title">',
+			'after_title' 	=> '</h3></div><div class="card-body">',
 		));
 
 		register_sidebar(array(
@@ -70,11 +70,11 @@ if (!function_exists('idaho_webmaster_widgets_init')) :
 			'description' 	=> '',
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' 	=> '</aside>',
-			'before_title' 	=> '<h3 class="widget-title">',
-			'after_title' 	=> '</h3>',
+			'before_title' 	=> '<div class="card-heading"><h3 class="card-title">',
+			'after_title' 	=> '</h3></div><div class="card-body">',
 		));
 
-		function footer_sidebar_register( $index ) {
+		function footer_sidebar_register($index) {
 			register_sidebar(array(
 				'name' 			=> esc_html__('Footer Column ', 'webmaster-bs4') . $index,
 				'id' 			=> 'footer-column-'.$index,
@@ -95,33 +95,17 @@ add_action('widgets_init', 'idaho_webmaster_widgets_init');
 
 if (!function_exists('idaho_webmaster_scripts')) :
 	function idaho_webmaster_scripts() {
-		wp_enqueue_style('webmaster-bs4-font', 'https://fonts.googleapis.com/css?family=Montserrat');
-		wp_enqueue_script('webmaster-bs4-fontawesome', 'https://use.fontawesome.com/releases/v5.3.1/js/all.js');
+		wp_enqueue_style('webmaster-bs4-font', 'https://fonts.googleapis.com/css?family=Montserrat|Lato');
+		wp_enqueue_style('webmaster-bs4-fontawesome', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 		wp_enqueue_style('webmaster-bs4', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css');
 		wp_enqueue_style('webmaster-bs4-style', get_stylesheet_uri());
 		wp_enqueue_script('webmaster-bs4-jquery', 'https://code.jquery.com/jquery-3.3.1.slim.min.js');
         wp_enqueue_script('webmaster-bs4-popper', get_template_directory_uri() . '/js/popper.min.js');
-		wp_enqueue_script('webmaster-bs4-bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js');
+        wp_enqueue_script('webmaster-bs4-bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js');
 		wp_enqueue_script('webmaster-bs4-theme', get_template_directory_uri() . '/js/theme.js', array('webmaster-bs4-bootstrap'), '1.2', true);
 	}
 endif;
 add_action('wp_enqueue_scripts', 'idaho_webmaster_scripts');
-
-function add_attribs_to_scripts($tag, $handle, $src) {
-	$async_scripts = array('webmaster-bs4-jquery');
-	$bs4 = array('webmaster-bs4-bootstrap');
-	$ftawe = array('webmaster-bs4-fontawesome');
-	if (in_array($handle, $bs4)) {
-		return '<script src="' . $src . '" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous" type="text/javascript"></script>' . "\n";
-	}
-	if (in_array($handle, $async_scripts)) {
-		return '<script src="' . $src . '" async integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" type="text/javascript"></script>' . "\n";
-	}
-	if (in_array($handle, $ftawe)) {
-		return '<script defer src="' . $src . '" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous" type="text/javascript"></script>' . "\n";
-	}
-}
-add_filter('script_loader_tag', 'add_attribs_to_scripts', 10, 3);
 
 if (!function_exists('idaho_webmaster_html_js_class')) :
 	function idaho_webmaster_html_js_class() {
@@ -130,16 +114,18 @@ if (!function_exists('idaho_webmaster_html_js_class')) :
 endif;
 add_action('wp_head', 'idaho_webmaster_html_js_class', 1);
 
+/*
 if (!function_exists('idaho_webmaster_external_link_style')) :
 	function idaho_webmaster_external_link_style() {
 		$siteURL = site_url();
 		if (empty($siteURL)) {
 			$siteURL = 'localhost';
 		}
-		echo '<script>FontAwesomeConfig={searchPseudoElements:true};</script><style>#content a:not([href*=".gov"]):not([href^="#"]):not([href^="/"]):not([href^="tel:"]):not(.no-icon-link):after{position:relative!important;top:0px;display:inline;font-family:"Font Awesome 5 Solid" !important;line-height:1;content:"\f35d";margin-left:3px;font-size:.5em}</style>'. "\n" ;
+		echo '<script>FontAwesomeConfig={searchPseudoElements:true};</script><style>#content a:not([href*=".gov"]):not([href^="#"]):not([href^="/"]):not([href^="tel:"]):not(.no-icon-link):not([href*="localhost:8888"]):after{position:relative!important;top:0px;display:inline;font-family:"Font Awesome 5 Free" !important;font-weight:900;line-height:1;content:"\f35d";margin-left:3px;font-size:0.5em}</style>'. "\n";
 	}
 endif;
 add_action('wp_head', 'idaho_webmaster_external_link_style', 1);
+*/
 
 if (!function_exists('idaho_webmaster_add_editor_styles')) :
 	function idaho_webmaster_add_editor_styles() {
@@ -390,7 +376,6 @@ require get_template_directory() . '/inc/meta-boxes.php';
 require get_template_directory() . '/inc/shortcodes.php';
 require get_template_directory() . '/inc/template-tags.php';
 
-/*
 require_once dirname(__FILE__) . '/inc/class-tgm-plugin-activation.php';
 add_action('tgmpa_register', 'webmaster_register_required_plugins');
 function webmaster_register_required_plugins() {
@@ -401,7 +386,14 @@ function webmaster_register_required_plugins() {
             'required'  			=> true,
             'force_activation' 		=> true,
             'force_deactivation' 	=> true
-        )
+		),
+		array(
+            'name'      			=> 'The Events Calendar',
+            'slug'      			=> 'eventcal',
+            'required'  			=> true,
+            'force_activation' 		=> true,
+            'force_deactivation' 	=> true
+		)
 	);
     $config = array(
         'default_path' => '',                      
@@ -433,5 +425,88 @@ function webmaster_register_required_plugins() {
         )
     );
     tgmpa($plugins, $config);
-}	
-*/
+}
+
+function megamenu_add_theme_idaho_webmaster($themes) {
+    $themes["idaho_webmaster"] = array(
+        'title' => 'Idaho Webmaster',
+        'container_background_from' => 'rgb(238, 238, 238)',
+        'container_background_to' => 'rgb(238, 238, 238)',
+        'menu_item_align' => 'center',
+        'menu_item_link_color' => 'rgb(34, 34, 34)',
+        'panel_header_border_color' => '#555',
+        'panel_font_size' => '14px',
+        'panel_font_color' => '#666',
+        'panel_font_family' => 'inherit',
+        'panel_second_level_font_color' => '#555',
+        'panel_second_level_font_color_hover' => '#555',
+        'panel_second_level_text_transform' => 'uppercase',
+        'panel_second_level_font' => 'inherit',
+        'panel_second_level_font_size' => '16px',
+        'panel_second_level_font_weight' => 'bold',
+        'panel_second_level_font_weight_hover' => 'bold',
+        'panel_second_level_text_decoration' => 'none',
+        'panel_second_level_text_decoration_hover' => 'none',
+        'panel_second_level_border_color' => '#555',
+        'panel_third_level_font_color' => '#666',
+        'panel_third_level_font_color_hover' => '#666',
+        'panel_third_level_font' => 'inherit',
+        'panel_third_level_font_size' => '14px',
+        'flyout_link_size' => '14px',
+        'flyout_link_color' => '#666',
+        'flyout_link_color_hover' => '#666',
+        'flyout_link_family' => 'inherit',
+        'toggle_background_from' => '#222',
+        'toggle_background_to' => '#222',
+        'mobile_background_from' => '#222',
+        'mobile_background_to' => '#222',
+        'mobile_menu_item_link_font_size' => '14px',
+        'mobile_menu_item_link_color' => '#ffffff',
+        'mobile_menu_item_link_text_align' => 'left',
+        'mobile_menu_item_link_color_hover' => '#ffffff',
+        'mobile_menu_item_background_hover_from' => '#333',
+        'mobile_menu_item_background_hover_to' => '#333',
+        'custom_css' => '/** Push menu onto new line **/ 
+#{$wrap} { 
+    clear: both; 
+}',
+    );
+    return $themes;
+}
+add_filter("megamenu_themes", "megamenu_add_theme_idaho_webmaster");
+
+function megamenu_override_default_theme($value) {
+	if ( !isset($value['primary']['theme']) ) {
+	  $value['primary']['theme'] = 'idaho_webmaster';
+	}
+	return $value;
+  }
+add_filter('default_option_megamenu_settings', 'megamenu_override_default_theme');
+
+function remove_footer_admin() {
+	echo '<span id="footer-thankyou">Developed by <a href="https://accessidaho.org" target="_blank">Access Idaho</a></span>';
+}
+add_filter('admin_footer_text', 'remove_footer_admin');
+
+function disable_default_dashboard_widgets() {
+	global $wp_meta_boxes;
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_activity']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_comments']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_recent_drafts']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['tribe_dashboard_widget']);
+}
+add_action('wp_dashboard_setup', 'disable_default_dashboard_widgets');
+
+function ai_dashboard_widget($post, $callback_args) {
+	echo "<strong>Helpful links for your WordPress website:</strong><ul><li><a href='https://webmaster.idaho.gov/training/wordpress/' target='_blank'>WordPress Training</a></li><li><a href='http://webmaster.idaho.gov/wp-content/uploads/sites/60/2018/09/WordPress-User-Guide-compressed.pdf' target='_blank'>WordPress User Guide</a></li><li><a href='https://webmaster.idaho.gov' target='_blank'>State of Idaho Webmaster Resources</a></li><li><a href='https://wave.webaim.org/' target='_blank'>Web Accessibility Evaluation Tool</a></li></ul><p><u>Contact Access Idaho</u>:<br>(208) 332 - 0102<br>ask for Ashly or Richard<br><a href='mailto:creative@accessidaho.org'>creative@accessidaho.org</a></p>";
+}
+function ai_add_dashboard_widgets() {
+	wp_add_dashboard_widget('dashboard_widget', 'Help & Support Info', 'ai_dashboard_widget');
+}
+add_action('wp_dashboard_setup', 'ai_add_dashboard_widgets');

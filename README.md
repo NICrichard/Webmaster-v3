@@ -1,6 +1,6 @@
 # Idaho Webmaster Theme
 
-### A Modern WordPress Theme for Idaho State Agencies.
+### A Modern WordPress Theme for Idaho State Agencies
 
 ## Description
 
@@ -10,15 +10,15 @@ The official Idaho.gov State Agency WordPress theme. More information on the The
 
 = 3.0 =
 
-- Releashed: December 01, 2018
+- Released: January 2019
   - Changed boxed view to full screen width view.
   - Upgraded Bootstrap to version 4.0 with FlexBox.
+  - Changer over to the KingComposer page builder system.
   - Better SEO compliant.
   - Increased accessibility coding.
   - Improved and increased customizer functionalities.
   - More modern and refined color scheme customization choices.
   - Updated all underpinning scripts for functionality and security.
-  - Preparation for Gutenberg Editor and WordPress 5.
 
 = 2.1 =
 

@@ -6,9 +6,11 @@
  * Contains handlers to make Theme Customizer preview reload changes asynchronously.
  */
 
-(function ( $ ) {
+( function ( $ ) {
+
 	function getContrastYIQ( hexcolor ) {
 		if ( hexcolor.length < 6 ) return '#000000';
+
 		var r = parseInt( hexcolor.substr( 1, 2 ), 16 );
 		var g = parseInt( hexcolor.substr( 3, 2 ), 16 );
 		var b = parseInt( hexcolor.substr( 5, 2 ), 16 );
@@ -42,6 +44,7 @@
 		var g = ( num & 0x0000FF ) + amt;
 		if ( g > 255 ) g = 255;
 		else if ( g < 0 ) g = 0;
+
 		return ( usePound ? "#" : "" ) + String( "000000" + ( g | ( b << 8 ) | ( r << 16 ) ).toString( 16 ) ).slice( -6 );
 	}
 
@@ -70,6 +73,87 @@
 			$( '.site-description' ).text( to );
 		} );
 	} );
+	
+	// Header text color.
+	/*
+	wp.customize( 'header_textcolor', function ( value ) {
+		value.bind( function ( to ) {
+			if ( 'blank' === to ) {
+				$( '.site-title a, .site-description' ).css( {
+					'clip': 'rect(1px, 1px, 1px, 1px)',
+					'position': 'absolute'
+				} );
+			} else {
+				$( '.site-title a, .site-description' ).css( {
+					'clip': 'auto',
+					'color': to,
+					'position': 'relative'
+				} );
+			}
+		} );
+	} );
+	
+	wp.customize( 'idaho_color_primary', function ( value ) {
+		value.bind( function ( to ) {
+			jss.set( '.dropdown-menu li a:hover', {
+				'background': to,
+				'color': getContrastYIQ( to )
+			} );
+
+			jss.set( '.btn.btn-primary', {
+				'background': to,
+				'border-color': to,
+				'color': getContrastYIQ( to )
+			} );
+
+			jss.set( '.btn.btn-primary:hover', {
+				'background': tinycolor( to ).darken( hover_amount ).toString(),
+				'border-color': tinycolor( to ).darken( hover_amount ).toString(),
+				'color': getContrastYIQ( shadeColor( to, hover_amount ) )
+			} );
+
+			jss.set( '.btn.btn-secondary', {
+				'border-color': tinycolor( to ).darken( 50 ).toString(),
+			} );
+
+			jss.set( '.btn.btn-secondary:hover', {
+				'background': to,
+				'border-color': to,
+				'color': getContrastYIQ( to )
+			} );
+
+		} );
+	} );
+	
+	wp.customize( 'idaho_color_data_table', function ( value ) {
+		value.bind( function ( to ) {
+
+			jss.set( 'table.dataTable thead td', {
+				'background': shiftSL( to, '#eef7fb' ),
+				'border-color': shiftSL( to, "#d9edf7" )
+			} );
+
+			jss.set( '.table-striped > thead > tr, table.dataTable tbody tr:first-child td', {
+				'border-color': shiftSL( to, "#d9edf7" ),
+			} );
+
+			jss.set( '.table-hover > tbody > tr:hover', {
+				'background': shiftSL( to, "#d9edf7" ),
+			} );
+
+		} );
+	} );
+
+	wp.customize( 'idaho_color_header_bg', function ( value ) {
+		value.bind( function ( to ) {
+
+			jss.set( '#masthead .site-branding', {
+				'background': to
+			} );
+
+		} );
+	} );
+	*/
 
 	wp.customize( 'idaho_color_link', function ( value ) {
 		value.bind( function ( to ) {
@@ -80,7 +164,40 @@
 				'color': to
 			} );
 		} );
-	});
+	} );
+
+	/*
+	wp.customize( 'idaho_color_nav_hover', function ( value ) {
+		value.bind( function ( to ) {
+			jss.set( '.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus, .sidebar-menu>ul>li>a:hover, .pagination>.active>a, .pagination>.active>a:hover', {
+				'background': to,
+				'border-color': to,
+				'color': ( '#879967' !== to ) ? getContrastYIQ( to ) : '#fff'
+			} );
+
+		} );
+	} );
+
+	wp.customize( 'background_color', function ( value ) {
+		value.bind( function ( to ) {
+
+			jss.set( '.gradient-background-cutoff', {
+				'background-image': 'linear-gradient(' + tinycolor( to ).setAlpha( .1 ).toString() + ' 0%, ' + to + ' 100%)',
+			} );
+
+		} );
+	} );
+
+	wp.customize( 'idaho_gradient_top', function ( value ) {
+		value.bind( function ( to ) {
+
+			jss.set( '.gradient-background-cutoff', {
+				'top': to + 'px',
+			} );
+
+		} );
+	} );
+	*/
 
 	wp.customize( 'idaho_color_home_panel', function ( value ) {
 		value.bind( function ( to ) {

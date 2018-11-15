@@ -102,6 +102,7 @@ function idaho_webmaster_customize_register($wp_customize) {
 		'type'			=> 'text',
 	)));
 
+	/* 
 	$wp_customize->add_setting('idaho_googleplus', array(
 		'default'			=> '',
 		'capability'		=> 'edit_theme_options',
@@ -115,7 +116,7 @@ function idaho_webmaster_customize_register($wp_customize) {
 		'settings'		=> 'idaho_googleplus',
 		'type'			=> 'text',
 	)));
-
+*/
 	$wp_customize->add_setting('idaho_youtube', array(
 		'default'			=> '',
 		'capability'		=> 'edit_theme_options',
@@ -218,6 +219,7 @@ function idaho_webmaster_customize_register($wp_customize) {
 		'type'			=> 'text',
 	)));
 
+	/*
 	$wp_customize->add_setting('idaho_header_layout', array(
 		'default'        	=> 'overmedium',
 		'capability'     	=> 'update_core',
@@ -237,6 +239,7 @@ function idaho_webmaster_customize_register($wp_customize) {
 			'medium' 		=> 'Two medium lines',
 		),
 	));
+*/
 
 	$wp_customize->add_setting('idaho_footer_layout', array(
 		'default'       	=> '5col',

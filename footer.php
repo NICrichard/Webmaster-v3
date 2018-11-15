@@ -14,22 +14,19 @@
       <div class="col-xs-12 col-sm-3 footer-widget" aria-label="social-media">
           <?php
           if (get_theme_mod('idaho_fb') != '') {
-              echo '<a class="no-icon-link social" href="https://facebook.com/' . esc_attr(get_theme_mod('idaho_fb')) . '" target="_blank"><i class="fas fa-2x fa-facebook-square"></i><span class="sr-only">Facebook Icon</span></a>';
+              echo '<a class="no-icon-link social" href="https://facebook.com/' . esc_attr(get_theme_mod('idaho_fb')) . '" target="_blank"><i class="fab fa-2x fa-facebook-square"></i><span class="sr-only">Facebook Icon</span></a>';
           }
           if (get_theme_mod('idaho_twitter') != '') {
-            echo '<a class="no-icon-link social" href="https://twitter.com/' . esc_attr(get_theme_mod('idaho_twitter')) . '" target="_blank"><i class="fas fa-2x fa-twitter-square"></i><span class="sr-only">Twitter Icon</span></a>';
+            echo '<a class="no-icon-link social" href="https://twitter.com/' . esc_attr(get_theme_mod('idaho_twitter')) . '" target="_blank"><i class="fab fa-2x fa-twitter-square"></i><span class="sr-only">Twitter Icon</span></a>';
           }
           if (get_theme_mod('idaho_instagram') != '') {
-            echo '<a class="no-icon-link social" href="https://instagram.com/' . esc_attr(get_theme_mod('idaho_instagram')) . '" target="_blank"><i class="fas fa-2x fa-instagram"></i><span class="sr-only">Instagram Icon</span></a>';
+            echo '<a class="no-icon-link social" href="https://instagram.com/' . esc_attr(get_theme_mod('idaho_instagram')) . '" target="_blank"><i class="fab fa-2x fa-instagram"></i><span class="sr-only">Instagram Icon</span></a>';
           }
           if (get_theme_mod('idaho_flickr') != '') {
-            echo '<a class="no-icon-link social" href="https://flickr.com/photos/' . esc_attr(get_theme_mod('idaho_flickr')) . '" target="_blank"><i class="fas fa-2x fa-flickr"></i><span class="sr-only">Flickr Icon</span></a>';
-          }
-          if (get_theme_mod('idaho_googleplus') != '') {
-            echo '<a class="no-icon-link social" href="https://plus.google.com/' . esc_attr(get_theme_mod('idaho_googleplus')) . '" target="_blank"><i class="fas fa-2x fa-google-plus-square"></i><span class="sr-only">Google+ Icon</span></a>';
+            echo '<a class="no-icon-link social" href="https://flickr.com/photos/' . esc_attr(get_theme_mod('idaho_flickr')) . '" target="_blank"><i class="fab fa-2x fa-flickr"></i><span class="sr-only">Flickr Icon</span></a>';
           }
           if (get_theme_mod('idaho_youtube') != '') {
-            echo '<a class="no-icon-link social" href="https://youtube.com/' . esc_attr(get_theme_mod('idaho_youtube')) . '" target="_blank"><i class="fas fa-2x fa-youtube-square"></i><span class="sr-only">YouTube Icon</span></a>';
+            echo '<a class="no-icon-link social" href="https://youtube.com/' . esc_attr(get_theme_mod('idaho_youtube')) . '" target="_blank"><i class="fab fa-2x fa-youtube-square"></i><span class="sr-only">YouTube Icon</span></a>';
           }
           if (get_theme_mod('idaho_feed') != '') {
             echo '<a class="no-icon-link social" href="';
@@ -43,8 +40,8 @@
       </div>
 		</div>
     <div class="row">
-    <div class="footer-links mx-auto align-middle" aria-label="Idaho State footer links">
-      <a href="https://idaho.gov" target="_blank">Idaho.gov</a> | <a href="https://idaho.gov/about-us/accessibility/" target="_blank">Accessibility</a> | <a href="https://cybersecurity.idaho.gov/" target="_blank">Cybersecurity</a> | <a href="https://idaho.gov/about-us/privacy-policy/" target="_blank">Privacy</a> | <a href="https://idaho.gov/about-us/security-policy/" target="_blank">Security</a>
+    <div class="footer-links mx-auto align-middle" aira-label="State of Idaho required links">
+      <a href="https://idaho.gov" target="_blank" rel="noopener noreferrer">Idaho.gov</a> | <a href="https://idaho.gov/about-us/accessibility/" target="_blank" rel="noopener noreferrer">Accessibility</a> | <a href="https://cybersecurity.idaho.gov/" target="_blank">Cybersecurity</a> | <a href="https://idaho.gov/about-us/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy</a> | <a href="https://idaho.gov/about-us/security-policy/" target="_blank" rel="noopener noreferrer">Security</a>
     </div>
   </div>
 	</div>

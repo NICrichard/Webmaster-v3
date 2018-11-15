@@ -46,10 +46,10 @@
 </head>
 <body <?php body_class(); ?> id="site-body">
 	<!--[if lt IE 10]>
-  	<div id="warning">
-  		<button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-  		<h4 class="yellow-warning">You're using an unsupported version of Internet Explorer. Site functionality is greatly reduced.</h4>
-  		<p><a href="https://windows.microsoft.com/en-us/internet-explorer/products/ie/home" target="_blank">Upgrade Internet Explorer</a>, install a <a href="https://browsehappy.com" target="_blank">modern browser</a>, or contact your system administrator.</p>
+  	<div class="alert alert-warning alert-dismissible" role="alert">
+  		<button class="btn btn-primary close" aria-hidden="true" data-dismiss="alert" type="button" aria-label="close">×</button>
+  		<strong>You're using an unsupported version of Internet Explorer, and this site's functionality is greatly reduced.</strong>
+  		<p><a href="https://support.microsoft.com/en-us/help/17621" target="_blank" rel="noopener noreferrer" class="alert-link">Upgrade Internet Explorer</a> or install a <a href="https://browsehappy.com" target="_blank" rel="noopener noreferrer" class="alert-link">modern browser</a>, or contact your system administrator.</p>
   	</div>
 	<![endif]-->
 	<div class="content-wrapper">
@@ -65,34 +65,15 @@
 			<div class="site-branding header-background">
 				<div class="container">
 					<div class="row align-items-center d-flex">
-						<div class="col-xs-12 col-sm-3 d-flex">
+						<div class="col-xs-12 col-sm-3 col-md-4">
 							<a itemprop="url" href="<?php echo esc_url(home_url('/')); ?>" class="img-fluid logo" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home">
-								<img itemprop="logo" 
-								<?php
-								if (get_theme_mod('idaho_black_logo') === '') {
-								?>
-									src="<?php echo esc_url(get_stylesheet_directory_uri() . '/img/logo' . ((get_theme_mod('idaho_black_logo', true)) ? '' : '-white') . '.svg'); ?>" 
-								<?php 
-								} else {
-								?>
-									src="<?php echo esc_url(get_theme_mod('idaho_logo', get_stylesheet_directory_uri() . '/img/logo.svg')); ?>"
-								<?php
-								}	
-								?>
-									alt="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" class="img-responsive logo-col
-								<?php
-								if (get_theme_mod('idaho_black_logo', true)) {
-										echo ' blk-shadow">';
-								} else {
-									echo ' shadow">';
-								}
-								?>
-							</a>
+								<img itemprop="logo" <?php if (get_theme_mod('idaho_black_logo') === '') { ?> src="<?php echo esc_url(get_stylesheet_directory_uri() . '/img/logo' . ((get_theme_mod('idaho_black_logo', true)) ? '' : '-white') . '.svg'); ?>"<?php } else { ?> src="<?php echo esc_url(get_theme_mod('idaho_logo', get_stylesheet_directory_uri() . '/img/logo.svg')); ?>" <?php }	?> alt="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" class="img-responsive logo-col <?php if (get_theme_mod('idaho_black_logo', true)) { echo 'blk-shadow">'; } else { echo 'shadow">'; } ?></a>
+                                <strong class="agency <?php if (get_theme_mod('idaho_black_logo', true)) { echo 'black blk-shadow">'; } else { echo 'site-title shadow">'; } bloginfo('name'); ?></strong>	
 						</div>
-						<div class="col-xs-12 col-sm-9 col-md-6 header-text">
-							<?php get_template_part('template-parts/header', get_theme_mod('idaho_header_layout', 'overmedium')); ?>
+						<div class="col-xs-12 col-sm-9 col-md-4 header-text">
+							<?php // get_template_part('template-parts/header', get_theme_mod('idaho_header_layout', 'overmedium')); ?>
 						</div>
-						<div class="hidden-sm col-md-3 d-print-none">
+						<div class="hidden-sm col-md-4 d-print-none">
 							<div class="search-form">
 								<?php 
 								if (!get_theme_mod('idaho_search_header', false)) {
@@ -118,7 +99,7 @@
 						<div class="d-lg-none">
 							<button type="button" class="navbar-toggler btn-light" data-toggle="collapse" data-target="#main-navigation" aria-controls="main-navigation" aria-expanded="false" aria-label="Toggle navigation" <?php if ($show_search == true) { echo "style='position:absolute;'"; } ?>><span class="sr-only">Toggle navigation</span><i class="fas fa-bars"></i></button>
 							<?php if ($show_search === true) { ?>
-									<button type="button" class="navbar-search btn-light" data-toggle="collapse" data-target="#search-collapse" aria-controls="search-collapse" aria-expanded="false" aria-label="Toggle search"><span class="sr-only">Toggle search</span><i class="fas fa-search"></i></button>
+								<button type="button" class="navbar-search btn-light" data-toggle="collapse" data-target="#search-collapse" aria-controls="search-collapse" aria-expanded="false" aria-label="Toggle search"><span class="sr-only">Toggle search</span><i class="fas fa-search"></i></button>
 							<?php } ?>
 						</div>
 						<?php if ($show_search === true) { ?>
