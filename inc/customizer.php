@@ -10,25 +10,25 @@ function idaho_webmaster_customize_register($wp_customize) {
 	$wp_customize->remove_control('background_repeat');
 	$wp_customize->remove_control('background_attachment');
 
-	$wp_customize->add_section('idaho_logo_section', array(
-		'title'       	=> __('Logo', 'webmaster-bs4'),
+	$wp_customize->add_section('agency_logo_section', array(
+		'title'       	=> __('Agency Logo', 'webmaster-bs4'),
 		'priority'    	=> 30,
 		'capability' 	=> 'edit_theme_options',
-		'description' 	=> 'Upload a logo to replace the default.',
+		'description' 	=> 'Upload agency logo'
 	));
 
-	$wp_customize->add_setting('idaho_logo', array(
-		'default' 			=> get_template_directory_uri() . '/img/logo.svg',
-		'sanitize_callback' => 'sanitize_text_field',
+	$wp_customize->add_setting('agency_logo', array(
+		'sanitize_callback' => 'sanitize_text_field'
 	));
 
-	$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'idaho_logo', array(
-		'label'    		=> __('Logo', 'webmaster-bs4'),
-		'section'  		=> 'idaho_logo_section',
+	$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'agency_logo', array(
+		'label'    		=> __('Agency Logo', 'webmaster-bs4'),
+		'section'  		=> 'agency_logo_section',
 		'capability' 	=> 'edit_theme_options',
-		'settings' 		=> 'idaho_logo',
+		'settings' 		=> 'agency_logo'
 	)));
 
+	/* 
 	$wp_customize->add_setting('idaho_logo_retina', array(
 		'default' 			=> get_template_directory_uri() . '/img/logo.svg',
 		'capability' 		=> 'edit_theme_options',
@@ -40,15 +40,16 @@ function idaho_webmaster_customize_register($wp_customize) {
 		'section'  => 'idaho_logo_section',
 		'settings' => 'idaho_logo_retina',
 	)));
+*/
 
 	$wp_customize->add_section('idaho_social_media', array(
-		'title'	=> __('Social Media', 'webmaster-bs4'),
-		'description' => __('Leaving a field empty will disable the social media icon on your website.', 'webmaster-bs4'),
+		'title'			=> __('Social Media', 'webmaster-bs4'),
+		'description' 	=> __('Leaving a field empty will disable the social media icon on your website.', 'webmaster-bs4'),
 	));
 
 	$wp_customize->add_setting('idaho_fb', array(
-		'default'		=> '',
-		'capability'	=> 'edit_theme_options',
+		'default'			=> '',
+		'capability'		=> 'edit_theme_options',
 		'sanitize_callback'	=> 'sanitize_text_field',
 	));
 
@@ -495,7 +496,6 @@ function idaho_webmaster_get_color_scheme_css($colors) {
 	}
 	.site-footer h3 {
 		border-bottom: 1px solid {$font_colors['idaho_color_ui_blue']};
-		/* box-shadow: 0 1px 0 {$colors['idaho_color_ui_blue_shadow']}; */
 		color: {$font_colors['idaho_color_ui_blue']};
 	}
 	.site-footer a {

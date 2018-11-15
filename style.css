@@ -252,7 +252,7 @@ a>i:hover {
 }
 
 #masthead .logo {
-	padding-top: 30px;
+	padding-top: 50px;
 	display: inline-block;
 }
 
@@ -271,6 +271,22 @@ a>i:hover {
 	width: 100%;
 	/* min-width: 100%; */
 	max-width: 250px;
+}
+
+.agency {
+	text-transform: uppercase;
+	font-weight: 900;
+	letter-spacing: .2rem;
+	padding-left: 3px;
+}
+
+.agency-logo {
+	padding-top: 50px;
+	padding-left: 0;
+}
+
+.agency-logo>img {
+	max-width: 450px;
 }
 
 #masthead .header-text {

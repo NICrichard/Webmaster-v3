@@ -65,21 +65,19 @@
 			<div class="site-branding header-background">
 				<div class="container">
 					<div class="row align-items-center d-flex">
-						<div class="col-xs-12 col-sm-3 col-md-4">
+						<div class="col-xs-12 col-sm-3 col-md-3">
 							<a itemprop="url" href="<?php echo esc_url(home_url('/')); ?>" class="img-fluid logo" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home">
-								<img itemprop="logo" <?php if (get_theme_mod('idaho_black_logo') === '') { ?> src="<?php echo esc_url(get_stylesheet_directory_uri() . '/img/logo' . ((get_theme_mod('idaho_black_logo', true)) ? '' : '-white') . '.svg'); ?>"<?php } else { ?> src="<?php echo esc_url(get_theme_mod('idaho_logo', get_stylesheet_directory_uri() . '/img/logo.svg')); ?>" <?php }	?> alt="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" class="img-responsive logo-col <?php if (get_theme_mod('idaho_black_logo', true)) { echo 'blk-shadow">'; } else { echo 'shadow">'; } ?></a>
+								<img itemprop="logo" <?php if (get_theme_mod('idaho_black_logo') === '') { ?> src="<?php echo esc_url(get_stylesheet_directory_uri() . '/img/logo' . ((get_theme_mod('idaho_black_logo', true)) ? '' : '-white') . '.svg'); ?>"<?php } else { ?> src="<?php echo esc_url(get_theme_mod('idaho_logo', get_stylesheet_directory_uri() . '/img/logo.svg')); ?>" <?php }	?> alt="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" class="img-responsive logo-col <?php if (get_theme_mod('idaho_black_logo', true)) { echo 'blk-shadow">'; } else { echo 'shadow">'; } ?></a><br>
                                 <strong class="agency <?php if (get_theme_mod('idaho_black_logo', true)) { echo 'black blk-shadow">'; } else { echo 'site-title shadow">'; } bloginfo('name'); ?></strong>	
 						</div>
-						<div class="col-xs-12 col-sm-9 col-md-4 header-text">
-							<?php // get_template_part('template-parts/header', get_theme_mod('idaho_header_layout', 'overmedium')); ?>
+						<div class="hidden-xs visible-md col-sm-9 col-md-4 agency-logo">
+							<?php if (get_theme_mod('agency_logo') !== '') {
+								echo '<img class="img-responsive" src="' . esc_url(get_theme_mod("agency_logo")) . '" alt="agency logo">';
+							} ?>
 						</div>
 						<div class="hidden-sm col-md-4 d-print-none">
 							<div class="search-form">
-								<?php 
-								if (!get_theme_mod('idaho_search_header', false)) {
-									get_search_form();
-								}
-								?>
+								<?php if (!get_theme_mod('idaho_search_header', false)) { get_search_form(); } ?>
 							</div>
 						</div>
 					</div>
