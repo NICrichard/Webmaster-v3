@@ -55,9 +55,10 @@
 	<div class="content-wrapper">
 	<a href="#main" class="skip-link">Skip to main content</a>
 	<div class="top-navigation d-print-none">
-		<div class="row tagline">
+		<div class="row">
 			<div class="hidden-xs col-md-6"><img class="img-fluid idaho-logo" src="<?php echo get_template_directory_uri(); ?>/img/idaho.svg" alt="Idaho" width="50px"/> Official Government Website</div>
-			<div class="col-xs-12 col-sm-12 col-md-6"><?php idaho_webmaster_bs_nav_top(); ?></div>
+			<div class="col-xs-11 col-sm-11 col-md-5"><?php idaho_webmaster_bs_nav_top(); ?></div>
+			<div class="hidden-xs visible-md col-md-1 pull-right"><i class="fas fa-plus-square" onclick="resizeText(1)"></i> | <i class="fas fa-minus-square" onclick="resizeText(-1)"></i></div>
 		</div>
 	</div>
 	<div id="page" class="hfeed site">
@@ -122,4 +123,4 @@
 				?></nav></div>
 			</div>
 			<div class="container">
-				<div class="row">
+				

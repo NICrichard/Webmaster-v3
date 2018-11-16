@@ -512,6 +512,9 @@ function idaho_webmaster_get_color_scheme_css($colors) {
 		border-color: {$colors['idaho_color_home_panel']};
 		color: {$font_colors['idaho_color_home_panel']};
 	}
+	.tribe-list-widget div.tribe-event-duration {
+		background: {$colors['idaho_color_ui_blue']};
+	}
 	.panel.panel-default.alt {
 		border-color: {$colors['idaho_color_home_panel']};
 	}";

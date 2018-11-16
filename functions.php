@@ -9,6 +9,7 @@ remove_action('shutdown', 'wp_ob_end_flush_all', 1);
 
 // Gutenberg stuff
 add_theme_support('align-wide');
+add_theme_support('disable-custom-colors');
 add_theme_support('editor-font-sizes', array(
 	array(
 		'name'		=> __('small', 'webmaster-bs4'),
@@ -30,6 +31,11 @@ add_theme_support('editor-font-sizes', array(
 	)
 ));
 
+function ai_gutenberg_scripts() {
+	wp_enqueue_style('webmaster-bs4-guten', get_stylesheet_directory_uri() . '/assets/css/gutenberg.css', array(), filemtime(get_stylesheet_directory() . '/css/gutenberg.css'));
+}
+add_action('enqueue_block_editor_assets', 'ai_gutenberg_scripts');
+
 add_action('add_meta_boxes', 'ai_add_custom_box');
 add_action('save_post', 'ai_save_postdata');
 function ai_add_custom_box() {
@@ -42,24 +48,23 @@ function ai_add_custom_box() {
 		'high'
 	);
 }
-function ai_hide_title_box() {
+function ai_hide_title_box($post) {
+	$ck = get_post_meta($post->ID, 'hide_title', true);
 	echo '<input type="checkbox" name="hide_title" value="yes"';
-	if (get_post_meta($post_id, 'hide_title', true) === 'yes') {
+	if ($ck === 'yes') {
 		echo ' checked="checked"';
 	}
 	echo '> Hide the title';
 }
 function ai_save_postdata($post_id) {
-	if (!isset($_POST['hide_title']) && $_POST['hide_title'] != "") {
-		update_post_meta($post_id, 'hide_title', $_POST['hide_title']);
-	}
+	update_post_meta($post_id, 'hide_title', $_POST['hide_title']);
 }
 
 if (!function_exists('idaho_webmaster_setup')) :
 	function idaho_webmaster_setup() {
 	    add_theme_support('automatic-feed-links');
 	    add_theme_support('title-tag');
-	    add_theme_support('post-thumbnails', array('post'));
+	    add_theme_support('post-thumbnails');
 		set_post_thumbnail_size(900, 400, true);
 		add_image_size('card-img', 900, 350, true);
 		add_image_size('gallery-thumbnail', 600, 600, true);
@@ -152,6 +157,7 @@ if (!function_exists('idaho_webmaster_scripts')) :
         wp_enqueue_script('webmaster-bs4-popper', get_template_directory_uri() . '/js/popper.min.js');
         wp_enqueue_script('webmaster-bs4-bootstrap', get_theme_file_uri('/js/bootstrap.min.js'));
 		wp_enqueue_script('webmaster-bs4-theme', get_template_directory_uri() . '/js/theme.js', array('webmaster-bs4-bootstrap'), '1.2', true);
+		wp_enqueue_script('webmaster-bs4-sizer', get_template_directory_uri() . '/js/resizer.js');
 	}
 endif;
 add_action('wp_enqueue_scripts', 'idaho_webmaster_scripts');
@@ -438,18 +444,28 @@ function webmaster_register_required_plugins() {
 		),
 		array(
             'name'      			=> 'The Events Calendar',
-            'slug'      			=> 'eventcal',
+            'slug'      			=> 'the-events-calendar',
             'required'  			=> true,
             'force_activation' 		=> true,
             'force_deactivation' 	=> true
+		),
+		array(
+			'name'					=> 'Yoast SEO',
+			'slug'					=> 'wordpress-seo',
+			'required'				=> true,
+			'force_activation'		=> true,
+			'force_deactivation'	=> true,
+			'is_callable'			=> 'wpseo_init'
 		)
 	);
     $config = array(
+		'id'		   => 'ai_tgmpa',
         'default_path' => '',                      
-        'menu'         => 'tgmpa-install-plugins', 
+		'menu'         => 'tgmpa-install-plugins',
+		'capability'   => 'edit_theme_options',
         'has_notices'  => true,                    
-        'dismissable'  => true,                    
-        'dismiss_msg'  => '',                      
+        'dismissable'  => false,                    
+        'dismiss_msg'  => 'Necessary required plugins for complete theme usage and configuration',                      
         'is_automatic' => true,                   
         'message'      => '',                      
         'strings'      => array(
@@ -559,3 +575,41 @@ function ai_add_dashboard_widgets() {
 	wp_add_dashboard_widget('dashboard_widget', 'Help & Support Info', 'ai_dashboard_widget');
 }
 add_action('wp_dashboard_setup', 'ai_add_dashboard_widgets');
+
+add_action('init', 'ai_bs4_slider');
+function ai_bs4_slider() {
+	$labels = array(
+		'name'			=> _x('Slider', 'post type general name'),
+		'singular_name'	=> _x('Slide', 'post type singular name'),
+		'menu_name'		=> _x('Slider', 'admin menu'),
+		'name_admin_bar'=> _x('Slide', 'add new on admin bar'),
+		'add_new'		=> _x('Add New', 'Slide'),
+		'add_new_item'	=> __('Name'),
+		'new_item'		=> __('New Slide'),
+		'edit_item'		=> __('Edit Slide'),
+		'view_item'		=> __('View Slide'),
+		'all_items'		=> __('All Slides'),
+		'featured_image'=> __('Featured Image', 'webmaster-bs4'),
+		'search_items'	=> __('Search Slide'),
+		'parent_item_colon'=>__('Parent Slide:'),
+		'not_found'		=> __('No Slide found'),
+		'not_found_in_trash'=>__('No Slide found in trash')
+	);
+	$args = array(
+		'labels'		=> $labels,
+		'menu_icon'		=> 'dashicons-star-half',
+		'description'	=> __('Description'),
+		'public'		=> true,
+		'publicly_queryable' => true,
+		'show_ui'		=> true,
+		'show_in_menu'	=> true,
+		'query_var'		=> true,
+		'rewrite'		=> true,
+		'capability_type'=> 'post',
+		'has_archive'	=> true,
+		'hierarchical'	=> true,
+		'menu_position'	=> null,
+		'supports'		=> array('title', 'editor', 'thumbnail')
+	);
+	register_post_type('slide', $args);
+}

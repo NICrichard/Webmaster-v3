@@ -541,6 +541,46 @@ footer {
 
 /* ================ end of FOOTER ================ */
 
+/* ================ The Events Calendar ========== */
+.tribe-list-widget {
+	text-align: center;
+}
+
+.tribe-list-widget div.tribe-events-list-widget-events {
+	background: #eee;
+	padding-left: 3px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.tribe-list-widget div.tribe-event-duration {
+	background: #06909C;
+	color: #eee;
+	text-align: center;
+	padding-top: 10px;
+	line-height: 1.2;
+	font-size: 1.2em;
+}
+
+.tribe-list-widget .tribe-event-title {
+	margin-bottom: 0;
+	line-height: 1;
+	text-align: left;
+	display: inline-block;
+	margin-top: 5px !important;
+}
+
+.tribe-list-widget .tribe-event-title a {
+	color: #163765;
+}
+
+.cal-title {
+	font-size: large;
+	font-weight: 700;
+}
+
+/* ================ end of CALENDAR ============== */
+
 #warning {
 	background-color: #FEEFB3;
 	border-color: #FDBD4E;
@@ -780,9 +820,9 @@ footer {
 		float: none;
 	}
 
-	#masthead .header-text {
-		padding-top: 0px;
-		display: inline-block;
+	.agency {
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	.site-branding {
@@ -833,7 +873,7 @@ footer {
 @media (max-width: 575px) {
 	#masthead .logo img {
 		padding-top: 10px;
-		max-width: 50%;
+		/* max-width: 50%; */
 		width: 50%;
 		min-width: 50%;
 		position: relative;
