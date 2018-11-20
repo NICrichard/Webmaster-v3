@@ -8,28 +8,31 @@ if (function_exists('domain_mapping_post_content')) {
 remove_action('shutdown', 'wp_ob_end_flush_all', 1);
 
 // Gutenberg stuff
-add_theme_support('align-wide');
-add_theme_support('disable-custom-colors');
-add_theme_support('editor-font-sizes', array(
-	array(
-		'name'		=> __('small', 'webmaster-bs4'),
-		'shortName'	=> __('S', 'webmaster-bs4'),
-		'size'		=> 12,
-		'slug'		=> 'small'
-	),
-	array(
-		'name'		=> __('regular', 'webmaster-bs4'),
-		'shortName'	=> __('M', 'webmaster-bs4'),
-		'size'		=> 16,
-		'slug'		=> 'regular'
-	),
-	array(
-		'name'		=> __('large', 'webmaster-bs4'),
-		'shortName'	=> __('L', 'webmaster-bs4'),
-		'size'		=> 20,
-		'slug'		=> 'large'
-	)
-));
+function ai_gutenberg_stuff() {
+	add_theme_support('align-wide');
+	add_theme_support('disable-custom-colors');
+	add_theme_support('editor-font-sizes', array(
+		array(
+			'name'		=> __('small', 'webmaster-bs4'),
+			'shortName'	=> __('S', 'webmaster-bs4'),
+			'size'		=> 12,
+			'slug'		=> 'small'
+		),
+		array(
+			'name'		=> __('regular', 'webmaster-bs4'),
+			'shortName'	=> __('M', 'webmaster-bs4'),
+			'size'		=> 16,
+			'slug'		=> 'regular'
+		),
+		array(
+			'name'		=> __('large', 'webmaster-bs4'),
+			'shortName'	=> __('L', 'webmaster-bs4'),
+			'size'		=> 20,
+			'slug'		=> 'large'
+		)
+	));
+}
+add_action('after_setup_theme', 'ai_gutenberg_stuff');
 
 function ai_gutenberg_scripts() {
 	wp_enqueue_style('webmaster-bs4-guten', get_stylesheet_directory_uri() . '/assets/css/gutenberg.css', array(), filemtime(get_stylesheet_directory() . '/css/gutenberg.css'));
@@ -100,7 +103,7 @@ if (!function_exists('idaho_webmaster_widgets_init')) :
 		register_sidebar(array(
 			'name' 			=> esc_html__('General Sidebar', 'webmaster-bs4'),
 			'id' 			=> 'sidebar-1',
-			'description' 	=> '',
+			'description' 	=> 'Shown on all pages',
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' 	=> '</aside>',
 			'before_title' 	=> '<div class="card-heading"><h3 class="card-title">',
@@ -110,7 +113,7 @@ if (!function_exists('idaho_webmaster_widgets_init')) :
 		register_sidebar(array(
 			'name' 			=> esc_html__('Home Sidebar', 'webmaster-bs4'),
 			'id' 			=> 'sidebar-home',
-			'description' 	=> '',
+			'description' 	=> 'Shown on frontpage only',
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' 	=> '</div></aside>',
 			'before_title' 	=> '<div class="card-heading"><h3 class="card-title">',
@@ -118,9 +121,19 @@ if (!function_exists('idaho_webmaster_widgets_init')) :
 		));
 
 		register_sidebar(array(
+			'name' 			=> esc_html__('Event Listing Bar', 'webmaster-bs4'),
+			'id' 			=> 'event-bar',
+			'description' 	=> 'Shown on frontpage only - full width above the Footer area',
+			'before_widget' => '',
+			'after_widget' 	=> '',
+			'before_title' 	=> '<h3 class="eventsbar">',
+			'after_title' 	=> '</h3>',
+		));
+
+		register_sidebar(array(
 			'name' 			=> esc_html__('Page Sidebar', 'webmaster-bs4'),
 			'id' 			=> 'sidebar-page',
-			'description' 	=> '',
+			'description' 	=> 'Shown on all pages except frontpage (home)',
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' 	=> '</aside>',
 			'before_title' 	=> '<div class="card-heading"><h3 class="card-title">',
@@ -579,37 +592,80 @@ add_action('wp_dashboard_setup', 'ai_add_dashboard_widgets');
 add_action('init', 'ai_bs4_slider');
 function ai_bs4_slider() {
 	$labels = array(
-		'name'			=> _x('Slider', 'post type general name'),
-		'singular_name'	=> _x('Slide', 'post type singular name'),
-		'menu_name'		=> _x('Slider', 'admin menu'),
-		'name_admin_bar'=> _x('Slide', 'add new on admin bar'),
-		'add_new'		=> _x('Add New', 'Slide'),
-		'add_new_item'	=> __('Name'),
-		'new_item'		=> __('New Slide'),
-		'edit_item'		=> __('Edit Slide'),
-		'view_item'		=> __('View Slide'),
-		'all_items'		=> __('All Slides'),
-		'featured_image'=> __('Featured Image', 'webmaster-bs4'),
-		'search_items'	=> __('Search Slide'),
+		'name'				=> _x('Slider', 'post type general name'),
+		'singular_name'		=> _x('Slide', 'post type singular name'),
+		'menu_name'			=> _x('Carousel Slider', 'admin menu'),
+		'name_admin_bar'	=> _x('Slide', 'add new on admin bar'),
+		'add_new'			=> _x('Add New', 'Slide'),
+		'add_new_item'		=> __('Name'),
+		'new_item'			=> __('New Slide'),
+		'edit_item'			=> __('Edit Slide'),
+		'view_item'			=> __('View Slide'),
+		'all_items'			=> __('All Slides'),
+		'featured_image'	=> __('Featured Image', 'webmaster-bs4'),
+		'search_items'		=> __('Search Slide'),
 		'parent_item_colon'=>__('Parent Slide:'),
-		'not_found'		=> __('No Slide found'),
+		'not_found'			=> __('No Slide found'),
 		'not_found_in_trash'=>__('No Slide found in trash')
 	);
 	$args = array(
-		'labels'		=> $labels,
-		'menu_icon'		=> 'dashicons-star-half',
-		'description'	=> __('Description'),
-		'public'		=> true,
+		'labels'			 => $labels,
+		'menu_icon'			 => 'dashicons-star-half',
+		'description'		 => __('Adds a Slider carousel on the homepage'),
+		'public'			 => true,
 		'publicly_queryable' => true,
-		'show_ui'		=> true,
-		'show_in_menu'	=> true,
-		'query_var'		=> true,
-		'rewrite'		=> true,
-		'capability_type'=> 'post',
-		'has_archive'	=> true,
-		'hierarchical'	=> true,
-		'menu_position'	=> null,
-		'supports'		=> array('title', 'editor', 'thumbnail')
+		'show_ui'			 => true,
+		'show_in_menu'		 => true,
+		'query_var'			 => true,
+		'rewrite'			 => true,
+		'capability_type'	 => 'post',
+		'has_archive'		 => true,
+		'hierarchical'		 => true,
+		'menu_position'		 => null,
+		'supports'			 => array('title', 'editor', 'thumbnail')
 	);
-	register_post_type('slide', $args);
+	register_post_type('slider', $args);
+}
+
+function idaho_version_in_footer() {
+	$id_theme = wp_get_theme(get_template()); 
+	echo "<div class='versioning'>ver: " . esc_html($id_theme->get('Version')) . "</div>";
+}
+add_action('wp_footer', 'idaho_version_in_footer');
+
+add_action('init', 'ai_bs4_press');
+function ai_bs4_press() {
+	$labels = array(
+		'name'				=> _x('pressrelease', 'post type general name'),
+		'singular_name'		=> _x('Press Release', 'post type singular name'),
+		'menu_name'			=> _x('Press Releases', 'admin menu'),
+		'name_admin_bar'	=> _x('Press Release', 'add new on admin bar'),
+		'add_new'			=> _x('Add New', 'pressrelease'),
+		'add_new_item'		=> __('Name'),
+		'new_item'			=> __('New Press Release'),
+		'edit_item'			=> __('Edit Press Release'),
+		'view_item'			=> __('View Press Release'),
+		'all_items'			=> __('All Press Releases'),
+		'search_items'		=> __('Search Press Release'),
+		'parent_item_colon' => __('Parent Press Release:'),
+		'not_found'			=> __('No Press Release found'),
+		'not_found_in_trash'=> __('No Press Release found in trash')
+	);
+	$args = array(
+		'labels'			 => $labels,
+		'menu_icon'			 => 'dashicons-shield-alt',
+		'description'		 => '',
+		'public'			 => true,
+		'publicly_queryable' => true,
+		'show_ui'			 => true,
+		'show_in_menu'		 => true,
+		'query_var'			 => true,
+		'rewrite'			 => true,
+		'capability_type'	 => 'post',
+		'has_archive'		 => true,
+		'hierarchical'		 => true,
+		'menu_position'		 => null,
+		'supports'			 => array('title', 'editor')
+	);
+	register_post_type('pressrelease', $args);
 }

@@ -28,20 +28,6 @@ function idaho_webmaster_customize_register($wp_customize) {
 		'settings' 		=> 'agency_logo'
 	)));
 
-	/* 
-	$wp_customize->add_setting('idaho_logo_retina', array(
-		'default' 			=> get_template_directory_uri() . '/img/logo.svg',
-		'capability' 		=> 'edit_theme_options',
-		'sanitize_callback' => 'sanitize_text_field',
-	));
-
-	$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'idaho_logo_retina', array(
-		'label'    => __('Retina Logo', 'webmaster-bs4'),
-		'section'  => 'idaho_logo_section',
-		'settings' => 'idaho_logo_retina',
-	)));
-*/
-
 	$wp_customize->add_section('idaho_social_media', array(
 		'title'			=> __('Social Media', 'webmaster-bs4'),
 		'description' 	=> __('Leaving a field empty will disable the social media icon on your website.', 'webmaster-bs4'),
@@ -103,21 +89,6 @@ function idaho_webmaster_customize_register($wp_customize) {
 		'type'			=> 'text',
 	)));
 
-	/* 
-	$wp_customize->add_setting('idaho_googleplus', array(
-		'default'			=> '',
-		'capability'		=> 'edit_theme_options',
-		'sanitize_callback'	=> 'sanitize_text_field',
-	));
-
-	$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'idaho_googleplus', array(
-		'label'			=> __('Google+ Username', 'webmaster-bs4'),
-		'description'	=> __('Your Google+ username is the part beginning with the + symbol.', 'webmaster-bs4'),
-		'section'		=> 'idaho_social_media',
-		'settings'		=> 'idaho_googleplus',
-		'type'			=> 'text',
-	)));
-*/
 	$wp_customize->add_setting('idaho_youtube', array(
 		'default'			=> '',
 		'capability'		=> 'edit_theme_options',
@@ -455,6 +426,79 @@ function idaho_webmaster_color_scheme_css() {
 }
 add_action('wp_enqueue_scripts', 'idaho_webmaster_color_scheme_css');
 
+function ai_setup() {
+	// add to Gutenberg
+	$ai_color_options = array(
+		array(
+			'name'			=> esc_html__('Link Color', 'webmaster-bs4'),
+			'description'	=> esc_html('Used on all links', 'webmaster-bs4'),
+			'slug'			=> 'ai-link',
+			'option'		=> 'ai_link_color',
+			'default'		=> '#007ea7',
+			'transport'		=> 'postMessage'
+		),
+		array(
+			'name'			=> esc_html__('USA Map Color', 'webmaster-bs4'),
+			'description'	=> esc_html('Used on the map of the USA', 'webmaster-bs4'),
+			'slug'			=> 'ai-usa',
+			'option'		=> 'ai_usa_color',
+			'default'		=> '#789dbf',
+			'transport'		=> 'postMessage'
+		),
+		array(
+			'name'			=> esc_html__('Footer Background Color', 'webmaster-bs4'),
+			'description'	=> esc_html('Background color in the Footer', 'webmaster-bs4'),
+			'slug'			=> 'ai-footer-bkg',
+			'option'		=> 'ai_footerbkg_color',
+			'default'		=> '#003459',
+			'transport'		=> 'postMessage'
+		),
+		array(
+			'name'			=> esc_html__('Headings Color', 'webmaster-bs4'),
+			'description'	=> esc_html('Heading Color', 'webmaster-bs4'),
+			'slug'			=> 'ai-heading',
+			'option'		=> 'ai_heading_color',
+			'default'		=> '#fe924c',
+			'transport'		=> 'postMessage'
+		),
+		array(
+			'name'			=> esc_html__('Home Panel Color', 'webmaster-bs4'),
+			'description'	=> esc_html('Panels on the Homepage', 'webmaster-bs4'),
+			'slug'			=> 'ai-home',
+			'option'		=> 'ai_home_color',
+			'default'		=> '#a9a9a9',
+			'transport'		=> 'postMessage'
+		),
+		array(
+			'name'			=> esc_html__('White Color', 'webmaster-bs4'),
+			'description'	=> esc_html('', 'webmaster-bs4'),
+			'slug'			=> 'ai-white',
+			'option'		=> 'ai_white_color',
+			'default'		=> '#ffffff',
+			'transport'		=> 'postMessage'
+		),
+		array(
+			'name'			=> esc_html__('Black Color', 'webmaster-bs4'),
+			'description'	=> esc_html('', 'webmaster-bs4'),
+			'slug'			=> 'ai-black',
+			'option'		=> 'ai_black_color',
+			'default'		=> '#000000',
+			'transport'		=> 'postMessage'
+		)
+	);
+	$ai_color_palette = array();
+	$ai_color_scheme = idaho_webmaster_get_color_schemes();
+	foreach ($ai_color_options as $color) {
+		$ai_color_palette[] = array(
+			'name' => $color['name'],
+			'slug' => $color['slug'],
+			'color'=> esc_html(get_theme_mod($color['option'], $color['default']))
+		);
+	}
+	add_theme_support('editor-color-palette', $ai_color_palette);
+}
+add_action('after_setup_theme', 'ai_setup');
+
 function idaho_webmaster_customize_control_js() {
 	wp_enqueue_script('color-scheme-control', get_template_directory_uri() . '/js/color-scheme-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util'));
 	wp_localize_script('color-scheme-control', 'colorScheme', idaho_webmaster_get_color_schemes());
@@ -491,7 +535,7 @@ function idaho_webmaster_get_color_scheme_css($colors) {
 	.pagination>li>a, a:hover, .pagination>li>a, .link, a {
 		color: {$colors['idaho_color_link']};
 	}
-	.site-footer {
+	.site-footer, .versioning {
 		background: {$colors['idaho_color_ui_blue']};
 	}
 	.site-footer h3 {
@@ -507,6 +551,7 @@ function idaho_webmaster_get_color_scheme_css($colors) {
 	h1.entry-title {
 		color: {$colors['idaho_color_secondary']};
 	}
+	.event-area { background: {$colors['idaho_color_home_panel']}; }
 	.panel.panel-default.alt .panel-heading {
 		background: {$colors['idaho_color_home_panel']};
 		border-color: {$colors['idaho_color_home_panel']};
@@ -571,7 +616,6 @@ function idaho_webmaster_idaho_color_ui_blue_css() {
 	if (!$color) {
 		return;
 	}
-
 	$css = '.site-footer {
 			background: %1$s;
 		}

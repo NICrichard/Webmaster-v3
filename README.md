@@ -11,19 +11,20 @@ The official Idaho.gov State Agency WordPress theme. More information on the The
 = 3.0 =
 
 - Released: January 2019
-  - Changed boxed view to full screen width view.
-  - Upgraded Bootstrap to version 4.0 with FlexBox.
-  - Utilization of the WordPress' Gutenberg page editor.
-  - Better SEO compliant.
+  - Changed boxed-view to fullscreen-width view.
+  - Upgraded Bootstrap to version 4 with FlexBox.
+  - Utilization of the the Gutenberg page editor.
+  - Better SEO compliance.
   - Increased accessibility coding.
   - Improved and increased customizer functionalities.
-  - More modern and refined color scheme customization choices.
+  - A more modern and refined color scheme customization choices.
   - Updated all underpinning scripts for functionality and security.
-  - Auto document identity icons to document links.
+  - Auto document-identity icons for document links.
   - Easy user text size resizing feature.
   - Agency logo customization feature added.
   - Calendar integration with Upcoming Events stylized listing widget.
   - Easily customizable Slider with optional captions.
+  - Press Release feature added.
 
 = 2.1 =
 

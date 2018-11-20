@@ -105,6 +105,7 @@ h6,
 #content {
 	padding-top: 20px;
 	background-color: #fff;
+	margin-bottom: 30px;
 }
 
 a {
@@ -202,6 +203,20 @@ a>i:hover {
 
 .card {
 	border: 0px;
+}
+
+.versioning {
+	font-size: small;
+	text-align: right;
+	padding-right: 5px;
+}
+
+.event-area {
+	width: 100%;
+	background: lightslategray;
+	height: 200px;
+	max-height: 350px;
+	padding-top: 20px;
 }
 
 /* ================ TOP GRAY NAV ================ */
@@ -457,6 +472,19 @@ a.nav-link:active {
 
 /* ================ end of NAVIGATION ================ */
 
+/* ================ CAROUSEL SLIDER ================== */
+.carousel {
+	width: 100vw;
+	max-height: 350px;
+}
+
+.carousel-item {
+	max-height: 350px;
+}
+
+.carousel-item img {
+	width: 100vw;
+}
 
 /* ================ BODY ================ */
 .content-wrapper {
@@ -479,7 +507,8 @@ li.breadcrumb-item {
 
 
 /* ================ FOOTER ================ */
-.site-footer {
+.site-footer,
+.versioning {
 	background: #002f56;
 }
 
@@ -496,9 +525,11 @@ li.breadcrumb-item {
 	padding-top: 20px;
 }
 
+/* 
 footer {
 	margin-top: 30px;
 }
+*/
 
 .footer-widget {
 	float: left;
@@ -546,11 +577,23 @@ footer {
 	text-align: center;
 }
 
+.tribe-events-list-widget-events {
+	margin: 10px;
+	min-height: 70px;
+}
+
 .tribe-list-widget div.tribe-events-list-widget-events {
 	background: #eee;
 	padding-left: 3px;
 	padding-top: 3px;
 	padding-bottom: 3px;
+}
+
+.card-body>.tribe-list-widget div.tribe-events-list-widget-events {
+	display: block !important;
+	margin: 0 0 10px 0 !important;
+	width: 100% !important;
+	min-width: 200px !important;
 }
 
 .tribe-list-widget div.tribe-event-duration {
@@ -559,7 +602,15 @@ footer {
 	text-align: center;
 	padding-top: 10px;
 	line-height: 1.2;
+	font-size: 1.3em;
+}
+
+.card-body>.tribe-list-widget div.tribe-event-duration {
+	width: 30% !important;
+	padding-top: 5px;
+	line-height: 1.5;
 	font-size: 1.2em;
+	display: table-cell;
 }
 
 .tribe-list-widget .tribe-event-title {
@@ -570,6 +621,11 @@ footer {
 	margin-top: 5px !important;
 }
 
+.card-body>.tribe-list-widget .tribe-event-title {
+	width: 69% !important;
+	display: table-cell;
+}
+
 .tribe-list-widget .tribe-event-title a {
 	color: #163765;
 }
@@ -577,9 +633,28 @@ footer {
 .cal-title {
 	font-size: large;
 	font-weight: 700;
+	display: block;
+}
+
+.eventsbar {
+	text-align: center;
+
 }
 
 /* ================ end of CALENDAR ============== */
+
+/* ================ PRESS RELEASE ================ */
+
+.pr {
+	margin-bottom: 30px;
+}
+
+.pr-date {
+	font-size: smaller;
+	padding-bottom: 20px;
+}
+
+/*******************************************/
 
 #warning {
 	background-color: #FEEFB3;

@@ -4,6 +4,19 @@
   ?>
   </div>
 </div>
+<?php
+if (is_front_page() && is_active_sidebar('event-bar')) {
+?>
+  <div class="event-area">
+    <div class="container">
+      <div class="row">
+        <div class="col"><?php dynamic_sidebar('event-bar'); ?></div>
+      </div>
+    </div>
+  </div>
+<?php
+}
+?>
 <footer id="colophon" class="site-footer d-print-none">
 	<div class="container">
 		<div class="row footer-navigation">
@@ -14,24 +27,24 @@
       <div class="col-xs-12 col-sm-3 footer-widget" aria-label="social-media">
           <?php
           if (get_theme_mod('idaho_fb') != '') {
-              echo '<a class="no-icon-link social" href="https://facebook.com/' . esc_attr(get_theme_mod('idaho_fb')) . '" target="_blank"><i class="fab fa-2x fa-facebook-square"></i><span class="sr-only">Facebook Icon</span></a>';
+              echo '<a class="no-icon-link social" href="https://facebook.com/' . esc_attr(get_theme_mod('idaho_fb')) . '" target="_blank" rel="noopener noreferrer"><i class="fab fa-2x fa-facebook-square"></i><span class="sr-only">Facebook Icon</span></a>';
           }
           if (get_theme_mod('idaho_twitter') != '') {
-            echo '<a class="no-icon-link social" href="https://twitter.com/' . esc_attr(get_theme_mod('idaho_twitter')) . '" target="_blank"><i class="fab fa-2x fa-twitter-square"></i><span class="sr-only">Twitter Icon</span></a>';
+            echo '<a class="no-icon-link social" href="https://twitter.com/' . esc_attr(get_theme_mod('idaho_twitter')) . '" target="_blank" rel="noopener noreferrer"><i class="fab fa-2x fa-twitter-square"></i><span class="sr-only">Twitter Icon</span></a>';
           }
           if (get_theme_mod('idaho_instagram') != '') {
-            echo '<a class="no-icon-link social" href="https://instagram.com/' . esc_attr(get_theme_mod('idaho_instagram')) . '" target="_blank"><i class="fab fa-2x fa-instagram"></i><span class="sr-only">Instagram Icon</span></a>';
+            echo '<a class="no-icon-link social" href="https://instagram.com/' . esc_attr(get_theme_mod('idaho_instagram')) . '" target="_blank" rel="noopener noreferrer"><i class="fab fa-2x fa-instagram"></i><span class="sr-only">Instagram Icon</span></a>';
           }
           if (get_theme_mod('idaho_flickr') != '') {
-            echo '<a class="no-icon-link social" href="https://flickr.com/photos/' . esc_attr(get_theme_mod('idaho_flickr')) . '" target="_blank"><i class="fab fa-2x fa-flickr"></i><span class="sr-only">Flickr Icon</span></a>';
+            echo '<a class="no-icon-link social" href="https://flickr.com/photos/' . esc_attr(get_theme_mod('idaho_flickr')) . '" target="_blank" rel="noopener noreferrer"><i class="fab fa-2x fa-flickr"></i><span class="sr-only">Flickr Icon</span></a>';
           }
           if (get_theme_mod('idaho_youtube') != '') {
-            echo '<a class="no-icon-link social" href="https://youtube.com/' . esc_attr(get_theme_mod('idaho_youtube')) . '" target="_blank"><i class="fab fa-2x fa-youtube-square"></i><span class="sr-only">YouTube Icon</span></a>';
+            echo '<a class="no-icon-link social" href="https://youtube.com/' . esc_attr(get_theme_mod('idaho_youtube')) . '" target="_blank" rel="noopener noreferrer"><i class="fab fa-2x fa-youtube-square"></i><span class="sr-only">YouTube Icon</span></a>';
           }
           if (get_theme_mod('idaho_feed') != '') {
             echo '<a class="no-icon-link social" href="';
             echo site_url();
-            echo '/feed/rss/" target="_blank"><i class="fas fa-2x fa-rss-square"></i><span class="sr-only">RSS Feed Icon</span></a>';
+            echo '/feed/rss/" target="_blank" rel="noopener noreferrer"><i class="fas fa-2x fa-rss-square"></i><span class="sr-only">RSS Feed Icon</span></a>';
           }
           if (get_theme_mod('idaho_email') != '') {
             echo '<a class="no-icon-link social" href="mailto:' . esc_attr(get_theme_mod('idaho_email')) . '"><i class="fas fa-2x fa-envelope-square"></i><span class="sr-only">Envelope Icon</span></a>';

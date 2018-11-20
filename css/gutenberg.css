@@ -1,3 +1,19 @@
+.has-black-background-color {
+    background-color: #000000;
+}
+
+.has-black-color {
+    color: #000;
+}
+
+.has-white-background-color {
+    background-color: #fff;
+}
+
+.has-white-color {
+    color: #fff;
+}
+
 .wp-admin .editor-block-list__block,
 .editor-block-list__block body {
     color: #000;

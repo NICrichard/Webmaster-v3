@@ -112,15 +112,15 @@
 				</nav>
 			</div>
 		</header>
-		<div id="content" class="site-content">
+		<div class="site-content">
+			<?php if (is_front_page() || is_404()) {} else { ?>
 			<div class="container">
 				<div class="row"><nav aria-label="breadcrumbs"><?php
 					if ('on' !== get_post_meta(get_the_ID(), '_idaho_breadcrumbs', 'off')) {
-						if (!is_front_page() || !is_404()) {
-							bootstrap_breadcrumb();
-						}
+						bootstrap_breadcrumb();
 					}
 				?></nav></div>
 			</div>
-			<div class="container">
+			<?php } ?>
+			
 				
