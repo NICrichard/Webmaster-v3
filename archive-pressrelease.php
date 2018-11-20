@@ -2,32 +2,31 @@
 get_header(); 
 $args = array(
     'post_type'     => 'pressrelease',
-    'post_status'   => 'publish',
-    'tax_query'     => array()
+	'post_status'   => 'publish',
+	'posts_per_page'=> -1
 );
 $pr = new WP_Query($args);
 ?>
-	<div id="primary" class="content-area <?php if ((is_active_sidebar('sidebar-home') && is_front_page()) || is_active_sidebar('sidebar-1') || (is_active_sidebar('sidebar-page') && !is_front_page())) { echo 'col-lg-9'; } else { echo 'col'; }?>">
-		<main id="main" class="site-main" role="main">
+	<div id="content" class="container">
+<div class="row">
+		<main id="main" class="site-main <?php if (is_active_sidebar('sidebar-1') || is_active_sidebar('sidebar-page')) { echo 'col-lg-9'; } else { echo 'col'; }?>" role="main">
 		<?php 
-		if (have_posts()) : ?>
-			<header class="page-header">
-				<?php
-					the_archive_title('<h1 class="page-title">', '</h1>');
-					// the_archive_description('<div class="taxonomy-description">', '</div>');
-				?>
-			</header>
+		if ($pr->have_posts()) : ?>
+			<header class="page-header"><h1 class="page-title">Press Releases</h1></header>
 			<?php 
-			while (have_posts()) : the_post(); 
-				get_template_part('template-parts/content', get_post_format());
-			endwhile; 
-			the_posts_navigation(); 
-		else : 
-			get_template_part('template-parts/content', 'none'); 
-		endif; 
-		?>
+			$prev_month = '';
+			while ($pr->have_posts()): $pr->the_post();
+			?>
+			<div class="card border-secondary">
+				<div class="card-header"><a href="<?php echo the_permalink(get_the_ID()); ?>"><?php echo the_title(); ?></a></div>
+				<div class="card-body">
+					<em class="card-title"><?php echo get_the_date(); ?></em>
+					<p class="card-text"><?php echo the_excerpt(); ?></p>
+				</div>
+			</div>
+			<?php endwhile; ?>
+		<?php endif; ?>
 		</main>
-	</div>
 	<?php 
 		if (is_active_sidebar('sidebar-1') || is_active_sidebar('sidebar-page')) {
             echo '<div class="sidebars col-lg-3">';
@@ -39,5 +38,6 @@ $pr = new WP_Query($args);
             }
             echo '</div>';
 }
+echo '</div>';
 	get_footer(); 
 	?>

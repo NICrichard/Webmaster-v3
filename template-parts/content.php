@@ -1,7 +1,7 @@
-<article id="post-<?php the_ID(); ?>" <?php post_class('panel panel-default alt'); ?>>
-	<header class="entry-header panel-heading">
+<article id="post-<?php the_ID(); ?>" <?php post_class('card'); ?>>
+	<header class="entry-header card-header">
         <?php 
-        the_title(sprintf('<h4 class="entry-title panel-title"><a href="%s" rel="bookmark">', esc_url(get_permalink())), '</a></h4>'); 
+        the_title(sprintf('<h4 class="entry-title card-title"><a href="%s" rel="bookmark">', esc_url(get_permalink())), '</a></h4>'); 
         if ('post' === get_post_type()) : 
         ?>
 		<div class="entry-meta">
@@ -9,8 +9,8 @@
 		</div>
 		<?php endif; ?>
 	</header>
-	<div class="panel-body">
-		<div class="panel-image">
+	<div class="card-body">
+		<div class="card-img-top">
 			<?php the_post_thumbnail('panel-image', array('class' => 'visible-md visible-lg')); ?>
 			<?php the_post_thumbnail(array(150, 150), array('class' => 'hidden-md hidden-lg')); ?>
 		</div>
@@ -25,7 +25,7 @@
 			));
 		?>
 	</div>
-	<footer class="entry-footer panel-footer">
+	<footer class="entry-footer card-footer text-muted">
 		<?php idaho_webmaster_entry_footer(); ?>
 	</footer>
 </article>

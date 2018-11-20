@@ -2,8 +2,9 @@
 defined('ABSPATH') || exit;
 get_header(); 
 ?>
-	<div id="primary" class="content-area <?php if ((is_active_sidebar('sidebar-home') && is_front_page()) || is_active_sidebar('sidebar-1') || (is_active_sidebar('sidebar-page') && !is_front_page())) { echo 'col-lg-9'; } else { echo 'col'; }?>">
-		<main id="main" class="site-main" role="main">
+	<div id="content" class="container">
+<div class="row">
+<main id="main" class="site-main <?php if (is_active_sidebar('sidebar-1') || is_active_sidebar('sidebar-page')) { echo 'col-lg-9'; } else { echo 'col'; }?>" role="main">
         <?php 
         if (have_posts()) { 
             if (is_home() && !is_front_page()) { 
@@ -22,7 +23,7 @@ get_header();
          } 
         ?>
 		</main>
-	</div>
+	
     <?php 
 	if ((is_active_sidebar('sidebar-home') && is_front_page()) || is_active_sidebar('sidebar-1') || (is_active_sidebar('sidebar-page') && !is_front_page())) {
     echo '<div class="sidebars col-lg-3">';
@@ -34,5 +35,6 @@ get_header();
 	}
 	echo '</div>';
 }
+echo '</div>';
 	get_footer(); 
 	?>

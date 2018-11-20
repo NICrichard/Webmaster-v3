@@ -96,17 +96,16 @@
 				<nav class="navbar navbar-expand-lg" role="navigation">
 					<div class="container">
 						<div class="d-lg-none">
-							<button type="button" class="navbar-toggler btn-light" data-toggle="collapse" data-target="#main-navigation" aria-controls="main-navigation" aria-expanded="false" aria-label="Toggle navigation" <?php if ($show_search == true) { echo "style='position:absolute;'"; } ?>><span class="sr-only">Toggle navigation</span><i class="fas fa-bars"></i></button>
 							<?php if ($show_search === true) { ?>
 								<button type="button" class="navbar-search btn-light" data-toggle="collapse" data-target="#search-collapse" aria-controls="search-collapse" aria-expanded="false" aria-label="Toggle search"><span class="sr-only">Toggle search</span><i class="fas fa-search"></i></button>
 							<?php } ?>
 						</div>
 						<?php if ($show_search === true) { ?>
-									<div class="collapse" id="search-collapse">
-										<div class="d-block d-lg-none d-print-none" aria-label="search">
-											<?php get_search_form(); ?>
-										</div>
-									</div>
+							<div class="collapse" id="search-collapse">
+								<div class="d-block d-lg-none d-print-none" aria-label="search">
+									<?php get_search_form(); ?>
+								</div>
+							</div>
 						<?php } idaho_webmaster_bootstrap_nav(); ?>
 					</div>
 				</nav>

@@ -29,7 +29,7 @@ if (post_password_required()) {
 		</nav>
 		<?php endif; ?>
 		<ul class="media-list">
-			<?php wp_list_comments( array( 'callback' => 'idaho_webmaster_comments' ) ); ?>
+			<?php // wp_list_comments( array( 'callback' => 'idaho_webmaster_comments' ) ); ?>
 		</ul>
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
 		<nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">

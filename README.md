@@ -24,7 +24,14 @@ The official Idaho.gov State Agency WordPress theme. More information on the The
   - Agency logo customization feature added.
   - Calendar integration with Upcoming Events stylized listing widget.
   - Easily customizable Slider with optional captions.
-  - Press Release feature added.
+  - Press Release custom feature added.
+  - Blog feature design updated.
+  - Easy user switching capability for Administrators.
+  - Media Library organization capabilities added.
+  - Image compression and optimization features.
+  - Broken Link Checker and notification features.
+  - Sample pages upon initial theme install.
+  - Gravity Forms form-builder featured with Gutenberg capabilities.
 
 = 2.1 =
 
@@ -42,4 +49,4 @@ The official Idaho.gov State Agency WordPress theme. More information on the The
 = 1.0 =
 
 - Released: 2012
-  - Initial Dreamweaver version released.
+  - Initial Dreamweaver and DIY versions released.

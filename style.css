@@ -228,6 +228,7 @@ a>i:hover {
 	vertical-align: middle;
 	position: relative;
 	z-index: 1;
+	padding-left: 20px;
 }
 
 #top-navigation {
@@ -652,6 +653,11 @@ footer {
 .pr-date {
 	font-size: smaller;
 	padding-bottom: 20px;
+}
+
+.card {
+	border: 1px solid;
+	margin-bottom: 30px;
 }
 
 /*******************************************/

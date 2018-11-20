@@ -8,8 +8,8 @@ endif;
 if (!function_exists('idaho_webmaster_posted_on')) :
 	function idaho_webmaster_posted_on() {
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-		if ( get_the_time('U') !== get_the_modified_time('U')) {
-			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+		if (get_the_time('U') !== get_the_modified_time('U')) {
+			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time> | updated: <time class="updated" datetime="%3$s">%4$s</time>';
 		}
 		$time_string = sprintf($time_string,
 			esc_attr(get_the_date('c')),
@@ -17,10 +17,7 @@ if (!function_exists('idaho_webmaster_posted_on')) :
 			esc_attr(get_the_modified_date('c')),
 			esc_html(get_the_modified_date())
 		);
-		$posted_on = sprintf(
-			esc_html_x('Posted on %s', 'post date', 'webmaster-bs4'),
-			'<a class="no-icon-link" href="' . esc_url(get_permalink()) . '" rel="bookmark">' . $time_string . '</a>'
-		);
+		$posted_on = sprintf(esc_html_x('Posted on %s', 'post date', 'webmaster-bs4'), $time_string);
 		/*
 		$byline = sprintf(
 			esc_html_x('by %s', 'post author', 'webmaster-bs4'),
@@ -34,19 +31,19 @@ if (!function_exists('idaho_webmaster_entry_footer')) :
 	function idaho_webmaster_entry_footer() {
 		if ('post' === get_post_type()) {
 			$categories_list = get_the_category_list(esc_html__(', ', 'webmaster-bs4'));
-			if ( $categories_list && idaho_webmaster_categorized_blog()) {
+			if ($categories_list && idaho_webmaster_categorized_blog()) {
 				printf('<span class="cat-links">' . esc_html__('Posted in %1$s', 'webmaster-bs4') . '</span>', $categories_list); 
 			}
 
 			$tags_list = get_the_tag_list('', esc_html__(', ', 'webmaster-bs4'));
 			if ($tags_list) {
-				printf('<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'webmaster-bs4' ) . '</span>', $tags_list);
+				printf('<span class="tags-links">' . esc_html__(' Tagged %1$s', 'webmaster-bs4') . '</span>', $tags_list);
 			}
 		}
 
 		if (!is_single() && !post_password_required() && (comments_open() || get_comments_number())) {
 			echo '<span class="comments-link">';
-			comments_popup_link(esc_html__('Leave a comment', 'webmaster-bs4'), esc_html__('1 Comment', 'webmaster-bs4'), esc_html__('% Comments', 'webmaster-bs4'));
+			comments_popup_link(esc_html__('Leave a comment', 'webmaster-bs4'), esc_html__(' - 1 Comment', 'webmaster-bs4'), esc_html__('% Comments', 'webmaster-bs4'));
 			echo '</span>';
 		}
 
@@ -55,7 +52,7 @@ if (!function_exists('idaho_webmaster_entry_footer')) :
 				esc_html__('Edit %s', 'webmaster-bs4'),
 				the_title('<span class="screen-reader-text">"', '"</span>', false)
 			),
-			'<span class="edit-link">',
+			' - <span class="edit-link">',
 			'</span>'
 		);
 	}

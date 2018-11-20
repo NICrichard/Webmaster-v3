@@ -469,6 +469,48 @@ function webmaster_register_required_plugins() {
 			'force_activation'		=> true,
 			'force_deactivation'	=> true,
 			'is_callable'			=> 'wpseo_init'
+		),
+		array(
+			'name'					=> 'User Switching',
+			'slug'					=> 'user-switching',
+			'required'				=> true,
+			'force_activation'		=> true,
+			'force_deactivation'	=> true
+		),
+		array(
+			'name'					=> 'WordPress Media Library Folders',
+			'slug'					=> 'media-library-plus',
+			'required'				=> true,
+			'force_activation'		=> true,
+			'force_deactivation'	=> true
+		),
+		array(
+			'name'					=> 'Image Compression',
+			'slug'					=> 'wp-smushit',
+			'required'				=> true,
+			'force_activation'		=> true,
+			'force_deactivation'	=> true
+		),
+		array(
+			'name'					=> 'Broken Link Checker',
+			'slug'					=> 'broken-link-checker',
+			'required'				=> true,
+			'force_activation'		=> true,
+			'force_deactivation'	=> true
+		),
+		array(
+			'name'					=> 'Gravity Forms',
+			'slug'					=> 'gravityforms',
+			'required'				=> true,
+			'force_activation'		=> true,
+			'force_deactivation'	=> true
+		),
+		array(
+			'name'					=> 'Gravity Forms Gutenberg add-on',
+			'slug'					=> 'gravityformsgutenberg',
+			'required'				=> true,
+			'force_activation'		=> true,
+			'force_deactivation'	=> true
 		)
 	);
     $config = array(
@@ -478,7 +520,7 @@ function webmaster_register_required_plugins() {
 		'capability'   => 'edit_theme_options',
         'has_notices'  => true,                    
         'dismissable'  => false,                    
-        'dismiss_msg'  => 'Necessary required plugins for complete theme usage and configuration',                      
+        'dismiss_msg'  => 'Necessary required plugins for complete and proper theme usage and configuration',                      
         'is_automatic' => true,                   
         'message'      => '',                      
         'strings'      => array(
@@ -512,12 +554,14 @@ function megamenu_add_theme_idaho_webmaster($themes) {
         'container_background_to' => 'rgb(238, 238, 238)',
         'menu_item_align' => 'center',
         'menu_item_link_color' => 'rgb(34, 34, 34)',
+        'menu_item_link_text_align' => 'center',
+        'menu_item_divider_color' => 'rgba(255, 255, 255, 0.79)',
         'panel_header_border_color' => '#555',
         'panel_font_size' => '14px',
         'panel_font_color' => '#666',
         'panel_font_family' => 'inherit',
         'panel_second_level_font_color' => '#555',
-        'panel_second_level_font_color_hover' => '#555',
+        'panel_second_level_font_color_hover' => 'rgb(255, 255, 255)',
         'panel_second_level_text_transform' => 'uppercase',
         'panel_second_level_font' => 'inherit',
         'panel_second_level_font_size' => '16px',
@@ -525,29 +569,45 @@ function megamenu_add_theme_idaho_webmaster($themes) {
         'panel_second_level_font_weight_hover' => 'bold',
         'panel_second_level_text_decoration' => 'none',
         'panel_second_level_text_decoration_hover' => 'none',
+        'panel_second_level_background_hover_from' => 'rgb(102, 102, 102)',
+        'panel_second_level_background_hover_to' => 'rgb(102, 102, 102)',
+        'panel_second_level_padding_left' => '5px',
+        'panel_second_level_padding_right' => '5px',
+        'panel_second_level_padding_top' => '5px',
+        'panel_second_level_padding_bottom' => '5px',
         'panel_second_level_border_color' => '#555',
         'panel_third_level_font_color' => '#666',
-        'panel_third_level_font_color_hover' => '#666',
+        'panel_third_level_font_color_hover' => 'rgb(255, 255, 255)',
         'panel_third_level_font' => 'inherit',
         'panel_third_level_font_size' => '14px',
+        'panel_third_level_background_hover_from' => 'rgb(102, 102, 102)',
+        'panel_third_level_background_hover_to' => 'rgb(102, 102, 102)',
+        'panel_third_level_padding_left' => '5px',
+        'panel_third_level_padding_right' => '5px',
+        'panel_third_level_padding_top' => '5px',
+        'panel_third_level_padding_bottom' => '5px',
+        'flyout_width' => 'auto',
         'flyout_link_size' => '14px',
         'flyout_link_color' => '#666',
         'flyout_link_color_hover' => '#666',
         'flyout_link_family' => 'inherit',
-        'toggle_background_from' => '#222',
-        'toggle_background_to' => '#222',
-        'mobile_background_from' => '#222',
-        'mobile_background_to' => '#222',
+        'transitions' => 'on',
+        'resets' => 'on',
+        'mobile_columns' => '1',
+        'toggle_background_from' => 'rgb(238, 238, 238)',
+        'toggle_background_to' => 'rgb(238, 238, 238)',
+        'toggle_bar_height' => '60px',
+        'mobile_menu_overlay' => 'on',
+        'mobile_menu_force_width' => 'on',
+        'mobile_background_from' => 'rgb(221, 221, 221)',
+        'mobile_background_to' => 'rgb(221, 221, 221)',
         'mobile_menu_item_link_font_size' => '14px',
-        'mobile_menu_item_link_color' => '#ffffff',
-        'mobile_menu_item_link_text_align' => 'left',
+        'mobile_menu_item_link_color' => 'rgb(34, 34, 34)',
+        'mobile_menu_item_link_text_align' => 'center',
         'mobile_menu_item_link_color_hover' => '#ffffff',
         'mobile_menu_item_background_hover_from' => '#333',
         'mobile_menu_item_background_hover_to' => '#333',
-        'custom_css' => '/** Push menu onto new line **/ 
-#{$wrap} { 
-    clear: both; 
-}',
+        'custom_css' => '#{$wrap} { clear: both; }',
     );
     return $themes;
 }
@@ -633,7 +693,7 @@ function idaho_version_in_footer() {
 }
 add_action('wp_footer', 'idaho_version_in_footer');
 
-add_action('init', 'ai_bs4_press');
+add_action('init', 'ai_bs4_press', 0);
 function ai_bs4_press() {
 	$labels = array(
 		'name'				=> _x('pressrelease', 'post type general name'),
@@ -662,10 +722,60 @@ function ai_bs4_press() {
 		'query_var'			 => true,
 		'rewrite'			 => true,
 		'capability_type'	 => 'post',
+		'can_export'		 => true,
 		'has_archive'		 => true,
-		'hierarchical'		 => true,
+		'hierarchical'		 => false,
 		'menu_position'		 => null,
-		'supports'			 => array('title', 'editor')
+		'supports'			 => array('title', 'editor', 'revisions', 'excerpt'),
+		'taxonomies'		 => array('pressrelease')
 	);
 	register_post_type('pressrelease', $args);
 }
+
+function query_post_type($query) {
+	if (is_category()) {
+		$post_type = get_query_var('post_type');
+		if ($post_type) {
+			$post_type = $post_type;
+		} else {
+			$post_type = array('nav_menu_item', 'post', 'pressrelease');
+			$query->set('post_type', $post_type);
+			return $query;
+		}
+	}
+}
+add_filter('pre_get_posts', 'query_post_type');
+
+function ai_webmaster_theme_setup() {
+	if (get_option('page_on_front') == '0' && get_option('show_on_front') == 'posts') {
+		$homepage = array(
+			'post_type'		=> 'page',
+			'post_title'	=> 'Home',
+			'post_content'	=> 'This is your sample Homepage. Go to your admin editor and make changes to add the information that you would like it to have.',
+			'post_status'	=> 'publish',
+			'post_author'	=> 1
+		);
+		$homepage_id = wp_insert_post($homepage);
+		update_option('show_on_front', 'page');
+		update_option('page_on_front', $homepage_id);
+		$calendar = array(
+			'post_type'		=> 'page',
+			'post_title'	=> 'Events',
+			'post_content'	=> '',
+			'post_status'	=> 'publish',
+			'post_author'	=> 1
+		);
+		wp_insert_page($calendar);
+		$pressRelease = array(
+			'post_type'		=> 'post',
+			'post_title'	=> 'Sample Press Release',
+			'post_content'	=> 'This is a samepl Press Release text.',
+			'post_status'	=> 'publish',
+			'post_author'	=> 1,
+			'post_category'	=> array('pressrelease'),
+			'tax_input'		=> array('pressrelease')
+		);
+		wp_insert_post($pressRelease);
+	}
+}
+add_action('after_setup_theme', 'ai_webmaster_theme_setup');
