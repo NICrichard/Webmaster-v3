@@ -410,17 +410,19 @@ register_default_headers(array(
 ));
 
 function webmaster_login_logo() { ?>
-	<style type="text/css">
-	#login h1 a, .login h1 a {
-		background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/img/logo.svg);
+<style type="text/css">
+	#login h1 a,
+	.login h1 a {
+		background-image: url(<?php echo get_stylesheet_directory_uri();
+		?>/img/logo.svg);
 		height: 65px;
 		width: 320px;
 		background-size: 320px 65px;
 		background-repeat: no-repeat;
 		padding-bottom: 10px;
 	}
-	</style>
-	<?php
+</style>
+<?php
 }
 add_action('login_enqueue_scripts', 'webmaster_login_logo');
 
@@ -440,7 +442,7 @@ require get_template_directory() . '/inc/bootstrap-breadcrumbs.php';
 require get_template_directory() . '/inc/custom-header.php';
 require get_template_directory() . '/inc/editor-formats.php';
 require get_template_directory() . '/inc/extras.php';
-require get_template_directory() . '/inc/meta-boxes.php';
+// require get_template_directory() . '/inc/meta-boxes.php';
 require get_template_directory() . '/inc/shortcodes.php';
 require get_template_directory() . '/inc/template-tags.php';
 
@@ -508,6 +510,13 @@ function webmaster_register_required_plugins() {
 		array(
 			'name'					=> 'Gravity Forms Gutenberg add-on',
 			'slug'					=> 'gravityformsgutenberg',
+			'required'				=> true,
+			'force_activation'		=> true,
+			'force_deactivation'	=> true
+		),
+		array(
+			'name'					=> 'Lazy Loader',
+			'slug'					=> 'bj-lazy-load',
 			'required'				=> true,
 			'force_activation'		=> true,
 			'force_deactivation'	=> true
@@ -590,7 +599,8 @@ function megamenu_add_theme_idaho_webmaster($themes) {
         'flyout_link_size' => '14px',
         'flyout_link_color' => '#666',
         'flyout_link_color_hover' => '#666',
-        'flyout_link_family' => 'inherit',
+		'flyout_link_family' => 'inherit',
+		'responsive_breakpoint' => '991px',
         'transitions' => 'on',
         'resets' => 'on',
         'mobile_columns' => '1',
@@ -676,8 +686,9 @@ function ai_bs4_slider() {
 		'publicly_queryable' => true,
 		'show_ui'			 => true,
 		'show_in_menu'		 => true,
+		'menu_position'		 => 5,
 		'query_var'			 => true,
-		'rewrite'			 => true,
+		'rewrite'			 => false,
 		'capability_type'	 => 'post',
 		'has_archive'		 => true,
 		'hierarchical'		 => true,
@@ -687,95 +698,180 @@ function ai_bs4_slider() {
 	register_post_type('slider', $args);
 }
 
+function ai_slider_meta() {
+	add_meta_box(
+		'slider-meta-id', 
+		__('Slider Link', 'webmaster-bs4'),
+		'ai_show_slider_meta_box',
+		'slider',
+		'normal',
+		'high'
+	);
+}
+add_action('add_meta_boxes_slider', 'ai_slider_meta');
+
+function ai_show_slider_meta_box() {
+	global $post;
+	$custom = get_post_custom($post->ID);
+	$link = isset($custom["link"][0])?$custom["link"][0]:'';
+	?>
+<input name="link" value="<?php echo $link; ?>">
+<?php
+}
+
+function ai_save_slider_field_meta() {
+	if (empty($_POST)) return;
+	global $post;
+	update_post_meta($post->ID, "link", $_POST["link"]);
+}
+add_action('save_post', 'ai_save_slider_field_meta');
+
 function idaho_version_in_footer() {
-	$id_theme = wp_get_theme(get_template()); 
-	echo "<div class='versioning'>ver: " . esc_html($id_theme->get('Version')) . "</div>";
+$id_theme = wp_get_theme(get_template());
+echo "<div class='versioning'>ver: " . esc_html($id_theme->get('Version')) . "</div>";
 }
 add_action('wp_footer', 'idaho_version_in_footer');
 
 add_action('init', 'ai_bs4_press', 0);
 function ai_bs4_press() {
-	$labels = array(
-		'name'				=> _x('pressrelease', 'post type general name'),
-		'singular_name'		=> _x('Press Release', 'post type singular name'),
-		'menu_name'			=> _x('Press Releases', 'admin menu'),
-		'name_admin_bar'	=> _x('Press Release', 'add new on admin bar'),
-		'add_new'			=> _x('Add New', 'pressrelease'),
-		'add_new_item'		=> __('Name'),
-		'new_item'			=> __('New Press Release'),
-		'edit_item'			=> __('Edit Press Release'),
-		'view_item'			=> __('View Press Release'),
-		'all_items'			=> __('All Press Releases'),
-		'search_items'		=> __('Search Press Release'),
-		'parent_item_colon' => __('Parent Press Release:'),
-		'not_found'			=> __('No Press Release found'),
-		'not_found_in_trash'=> __('No Press Release found in trash')
-	);
-	$args = array(
-		'labels'			 => $labels,
-		'menu_icon'			 => 'dashicons-shield-alt',
-		'description'		 => '',
-		'public'			 => true,
-		'publicly_queryable' => true,
-		'show_ui'			 => true,
-		'show_in_menu'		 => true,
-		'query_var'			 => true,
-		'rewrite'			 => true,
-		'capability_type'	 => 'post',
-		'can_export'		 => true,
-		'has_archive'		 => true,
-		'hierarchical'		 => false,
-		'menu_position'		 => null,
-		'supports'			 => array('title', 'editor', 'revisions', 'excerpt'),
-		'taxonomies'		 => array('pressrelease')
-	);
-	register_post_type('pressrelease', $args);
+register_taxonomy('pressrelease', 'pressrelease', array(
+'label' => __('Press Release'),
+'rewrite' => array('slug' => 'pressrelease')
+));
+$labels = array(
+'name' => _x('pressrelease', 'post type general name'),
+'singular_name' => _x('Press Release', 'post type singular name'),
+'menu_name' => _x('Press Releases', 'admin menu'),
+'name_admin_bar' => _x('Press Release', 'add new on admin bar'),
+'add_new' => _x('Add New', 'pressrelease'),
+'add_new_item' => __('Name'),
+'new_item' => __('New Press Release'),
+'edit_item' => __('Edit Press Release'),
+'view_item' => __('View Press Release'),
+'all_items' => __('All Press Releases'),
+'search_items' => __('Search Press Release'),
+'parent_item_colon' => __('Parent Press Release:'),
+'not_found' => __('No Press Release found'),
+'not_found_in_trash'=> __('No Press Release found in trash')
+);
+$args = array(
+'labels' => $labels,
+'menu_icon' => 'dashicons-shield-alt',
+'description' => '',
+'public' => true,
+'publicly_queryable' => true,
+'show_ui' => true,
+'show_in_menu' => true,
+'query_var' => true,
+'rewrite' => true,
+'capability_type' => 'post',
+'can_export' => true,
+'has_archive' => true,
+'hierarchical' => false,
+'menu_position' => null,
+'supports' => array('title', 'editor', 'revisions', 'excerpt'),
+'taxonomies' => array('post_tag', 'category')
+);
+register_post_type('pressrelease', $args);
 }
 
 function query_post_type($query) {
-	if (is_category()) {
-		$post_type = get_query_var('post_type');
-		if ($post_type) {
-			$post_type = $post_type;
-		} else {
-			$post_type = array('nav_menu_item', 'post', 'pressrelease');
-			$query->set('post_type', $post_type);
-			return $query;
-		}
-	}
+if (is_category()) {
+$post_type = get_query_var('post_type');
+if ($post_type) {
+$post_type = $post_type;
+} else {
+$post_type = array('nav_menu_item', 'post', 'pressrelease');
+$query->set('post_type', $post_type);
+return $query;
+}
+}
 }
 add_filter('pre_get_posts', 'query_post_type');
 
 function ai_webmaster_theme_setup() {
-	if (get_option('page_on_front') == '0' && get_option('show_on_front') == 'posts') {
-		$homepage = array(
-			'post_type'		=> 'page',
-			'post_title'	=> 'Home',
-			'post_content'	=> 'This is your sample Homepage. Go to your admin editor and make changes to add the information that you would like it to have.',
-			'post_status'	=> 'publish',
-			'post_author'	=> 1
-		);
-		$homepage_id = wp_insert_post($homepage);
-		update_option('show_on_front', 'page');
-		update_option('page_on_front', $homepage_id);
-		$calendar = array(
-			'post_type'		=> 'page',
-			'post_title'	=> 'Events',
-			'post_content'	=> '',
-			'post_status'	=> 'publish',
-			'post_author'	=> 1
-		);
-		wp_insert_page($calendar);
-		$pressRelease = array(
-			'post_type'		=> 'post',
-			'post_title'	=> 'Sample Press Release',
-			'post_content'	=> 'This is a samepl Press Release text.',
-			'post_status'	=> 'publish',
-			'post_author'	=> 1,
-			'post_category'	=> array('pressrelease'),
-			'tax_input'		=> array('pressrelease')
-		);
-		wp_insert_post($pressRelease);
-	}
+if (get_option('page_on_front') == '0' && get_option('show_on_front') == 'posts') {
+$homepage = array(
+'post_type' => 'page',
+'post_title' => 'Home',
+'post_content' => 'This is your sample Homepage. Go to your admin editor and make changes to add the information that
+you would like it to have.',
+'post_status' => 'publish',
+'post_author' => 1
+);
+$homepage_id = wp_insert_post($homepage);
+update_option('show_on_front', 'page');
+update_option('page_on_front', $homepage_id);
+$calendar = array(
+'post_type' => 'page',
+'post_title' => 'Events',
+'post_content' => '',
+'post_status' => 'publish',
+'post_author' => 1
+);
+wp_insert_page($calendar);
+$pressRelease = array(
+'post_type' => 'post',
+'post_title' => 'Sample Press Release',
+'post_content' => 'This is a samepl Press Release text.',
+'post_status' => 'publish',
+'post_author' => 1,
+'post_category' => array('pressrelease'),
+'tax_input' => array('pressrelease')
+);
+wp_insert_post($pressRelease);
+}
 }
 add_action('after_setup_theme', 'ai_webmaster_theme_setup');
+
+// non-super admin user role
+$result = add_role('web_admin', __('Website Administrator'), array(
+'read' => true,
+'edit_posts' => true,
+'edit_pages' => true,
+'edit_others_posts' => true,
+'create_posts' => true,
+'manage_categories' => true,
+'publish_posts' => true,
+'edit_files' => true,
+'edit_theme_options'=>true,
+'manage_options'=>true,
+'moderate_comments'=>true,
+'manage_categories'=>true,
+'manage_links'=>true,
+'edit_others_posts'=>true,
+'edit_pages'=>true,
+'edit_others_pages'=>true,
+'edit_published_pages'=>true,
+'publish_pages'=>true,
+'delete_pages'=>true,
+'delete_others_pages'=>true,
+'delete_published_pages'=>true,
+'delete_others_posts'=>true,
+'delete_private_posts'=>true,
+'edit_private_posts'=>true,
+'read_private_posts'=>true,
+'delete_private_pages'=>true,
+'edit_private_pages'=>true,
+'read_private_pages'=>true,
+'unfiltered_html'=>false,
+'edit_published_posts'=>true,
+'upload_files'=>true,
+'publish_posts'=>true,
+'delete_published_posts'=>true,
+'delete_posts'=>true,
+'install_plugins' => false,
+'update_plugin' => false,
+'update_core' => false
+));
+
+function ai_menu_page_removing() {
+global $user_ID;
+if (!current_user_can('update_core')) {
+remove_menu_page('edit-comments.php');
+remove_menu_page('options-general.php');
+remove_menu_page('tools.php');
+remove_menu_page('plugins.php');
+}
+}
+add_action('admin_init', 'ai_menu_page_removing');

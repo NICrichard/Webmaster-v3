@@ -1,9 +1,4 @@
 <?php
-/**
- * Adds in style formats to tinyMCE.
- *
- */
-
 if (!function_exists('idaho_webmaster_mce_styleselect')) :
 	function idaho_webmaster_mce_styleselect( $buttons ) {
 		array_unshift( $buttons, 'styleselect' );

@@ -1,8 +1,4 @@
 <?php
-/**
- * Shortcode for displaying blog panels.
- */
-
 add_shortcode('blog-panel', 'idaho_webmaster_blog_panel_func');
 if (!function_exists('idaho_webmaster_blog_panel_func')) {
 	function idaho_webmaster_blog_panel_func($atts, $content = '') {

@@ -83,14 +83,14 @@ if (!function_exists('idaho_webmaster_post_thumbnail')) {
 		}
 		if ( is_singular() ) :
 		?>
-		<div class="post-thumbnail">
-			<?php the_post_thumbnail(); ?>
-		</div><!-- .post-thumbnail -->
-		<?php else : ?>
-		<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true">
-			<?php the_post_thumbnail( 'post-thumbnail', array( 'alt' => the_title_attribute( 'echo=0' ), 'class' => 'img-responsive' ) ); ?>
-		</a>
-	<?php endif; // End is_singular().
+<div class="post-thumbnail">
+	<?php the_post_thumbnail(); ?>
+</div><!-- .post-thumbnail -->
+<?php else : ?>
+<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true">
+	<?php the_post_thumbnail( 'post-thumbnail', array( 'alt' => the_title_attribute( 'echo=0' ), 'class' => 'img-responsive' ) ); ?>
+</a>
+<?php endif; // End is_singular().
 	}
 }
 

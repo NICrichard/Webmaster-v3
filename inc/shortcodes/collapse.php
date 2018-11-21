@@ -1,9 +1,4 @@
 <?php
-/**
- * Shortcode for displaying collapsable accordions.
- *
- */
-
 $idaho_collapse_group_ID = (string) '';
 add_shortcode('collapse', 'idaho_collapse_func');
 /**
@@ -33,7 +28,7 @@ function idaho_collapse_func($atts, $content = '') {
 
 add_shortcode('accordion', 'idaho_accordion_func');
 /**
- * [collapse_group]
+ * [accordion]
  */
 function idaho_accordion_func($atts, $content) {
 	global $idaho_collapse_group_ID;

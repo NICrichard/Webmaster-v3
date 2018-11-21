@@ -1,9 +1,4 @@
 <?php
-/**
- * Shortcode for displaying panels.
- *
- */
-
 add_shortcode('panel', 'idaho_panel_func');
 function idaho_panel_func($atts, $content = '') {
 	$panel = (string) '';

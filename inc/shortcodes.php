@@ -1,8 +1,4 @@
 <?php
-/**
- * Import shorcode files from the shortcodes folder.
- */
-
 require get_template_directory() . '/inc/shortcodes/collapse.php';
 require get_template_directory() . '/inc/shortcodes/panel.php';
 require get_template_directory() . '/inc/shortcodes/youtube.php';

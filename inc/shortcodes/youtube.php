@@ -1,8 +1,4 @@
 <?php
-/**
- * Shortcode for displaying YouTube videos.
- */
-
 add_shortcode('youtube', 'idaho_youtube_func');
 function idaho_youtube_func($atts, $content = '') {
 	$video = (string) '';

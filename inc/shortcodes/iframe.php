@@ -1,9 +1,4 @@
 <?php
-/**
- * Shortcode for displaying iFrame.
- *
- */
-
 add_shortcode('iframe', 'idaho_iframe_func');
 function idaho_iframe_func($atts, $content = '') {
 	$video = (string) '';

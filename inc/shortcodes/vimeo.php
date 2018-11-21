@@ -1,9 +1,4 @@
 <?php
-/**
- * Shortcode for displaying YouTube videos.
- *
- */
-
 add_shortcode('vimeo', 'idaho_vimeo_func');
 function idaho_vimeo_func($atts, $content = '') {
 	$video = (string) '';

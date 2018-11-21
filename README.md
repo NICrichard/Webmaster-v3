@@ -32,6 +32,7 @@ The official Idaho.gov State Agency WordPress theme. More information on the The
   - Broken Link Checker and notification features.
   - Sample pages upon initial theme install.
   - Gravity Forms form-builder featured with Gutenberg capabilities.
+  - Image and video lazy loading implementation.
 
 = 2.1 =
 

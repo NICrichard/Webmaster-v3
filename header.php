@@ -1,6 +1,7 @@
 <?php $theme_dir = get_template_directory_uri() . '/img/social-img.jpg'; $show_search = (bool)true; ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
+
 <head>
 	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,6 +45,20 @@
 	<meta name="theme-color" content="#ffffff">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Rubik:300,300i,500" rel="stylesheet">
 </head>
+<?php if (get_theme_mod('idaho_gcs_id') !== '') { ?>
+<script>
+	(function () {
+		var cx = '<?php echo get_theme_mod("idaho_gcs_id"); ?>';
+		var gcse = document.createElement('script');
+		gcse.type = 'text/javascript';
+		gcse.async = true;
+		gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(gcse, s);
+  	})();
+</script>
+<?php } ?>
+
 <body <?php body_class(); ?> id="site-body">
 	<!--[if lt IE 10]>
   	<div class="alert alert-warning alert-dismissible" role="alert">
@@ -53,38 +68,53 @@
   	</div>
 	<![endif]-->
 	<div class="content-wrapper">
-	<a href="#main" class="skip-link">Skip to main content</a>
-	<div class="top-navigation d-print-none">
-		<div class="row">
-			<div class="hidden-xs col-md-6"><img class="img-fluid idaho-logo" src="<?php echo get_template_directory_uri(); ?>/img/idaho.svg" alt="Idaho" width="50px"/> Official Government Website</div>
-			<div class="col-xs-11 col-sm-11 col-md-5"><?php idaho_webmaster_bs_nav_top(); ?></div>
-			<div class="hidden-xs visible-md col-md-1 pull-right"><i class="fas fa-plus-square" onclick="resizeText(1)"></i> | <i class="fas fa-minus-square" onclick="resizeText(-1)"></i></div>
+		<a href="#main" class="skip-link">Skip to main content</a>
+		<div class="top-navigation d-print-none">
+			<div class="row">
+				<div class="hidden-xs col-md-5 col-lg-6"><img class="img-fluid idaho-logo" src="<?php echo get_template_directory_uri(); ?>/img/idaho.svg"
+					 alt="Idaho" width="50px" /> Official Government Website</div>
+				<div class="col-xs-11 col-sm-11 col-md-5">
+					<?php idaho_webmaster_bs_nav_top(); ?>
+				</div>
+				<div class="hidden-xs visible-md col-md-2 col-lg-1 pull-right" style="font-size:8pt;padding-top:3px;"><i class="fas fa-font fa-2x"
+					 onclick="resizeText(1)"></i> | <i class="fas fa-font" onclick="resizeText(-1)"></i></div>
+			</div>
 		</div>
-	</div>
-	<div id="page" class="hfeed site">
-		<header id="masthead" class="site-header" itemscope itemtype="https://schema.org/Organization">
-			<div class="site-branding header-background">
-				<div class="container">
-					<div class="row align-items-center d-flex">
-						<div class="col-xs-12 col-sm-3 col-md-3">
-							<a itemprop="url" href="<?php echo esc_url(home_url('/')); ?>" class="img-fluid logo" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home">
-								<img itemprop="logo" <?php if (get_theme_mod('idaho_black_logo') === '') { ?> src="<?php echo esc_url(get_stylesheet_directory_uri() . '/img/logo' . ((get_theme_mod('idaho_black_logo', true)) ? '' : '-white') . '.svg'); ?>"<?php } else { ?> src="<?php echo esc_url(get_theme_mod('idaho_logo', get_stylesheet_directory_uri() . '/img/logo.svg')); ?>" <?php }	?> alt="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" class="img-responsive logo-col <?php if (get_theme_mod('idaho_black_logo', true)) { echo 'blk-shadow">'; } else { echo 'shadow">'; } ?></a><br>
-                                <strong class="agency <?php if (get_theme_mod('idaho_black_logo', true)) { echo 'black blk-shadow">'; } else { echo 'site-title shadow">'; } bloginfo('name'); ?></strong>	
-						</div>
-						<div class="hidden-xs visible-md col-sm-9 col-md-4 agency-logo">
-							<?php if (get_theme_mod('agency_logo') !== '') {
+		<div id="page" class="hfeed site">
+			<header id="masthead" class="site-header" itemscope itemtype="https://schema.org/Organization">
+				<div class="site-branding header-background">
+					<div class="container">
+						<div class="row align-items-center d-flex">
+							<div class="col-xs-12 col-sm-3 col-md-3">
+								<a itemprop="url" href="<?php echo esc_url(home_url('/')); ?>" class="img-fluid logo" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>"
+								 rel="home">
+									<img itemprop="logo" <?php if (get_theme_mod('idaho_black_logo')==='' ) { ?> src="
+									<?php echo esc_url(get_stylesheet_directory_uri() . '/img/logo' . ((get_theme_mod('idaho_black_logo', true)) ? '' : '-white') . '.svg'); ?>"
+									<?php } else { ?> src="
+									<?php echo esc_url(get_theme_mod('idaho_logo', get_stylesheet_directory_uri() . '/img/logo.svg')); ?>"
+									<?php }	?> alt="
+									<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" class="img-responsive logo-col
+									<?php if (get_theme_mod('idaho_black_logo', true)) { echo 'blk-shadow">'; } else { echo 'shadow">'; } ?></a><br>
+								<strong class="agency <?php if (get_theme_mod('idaho_black_logo', true)) { echo 'black blk-shadow">'; } else {
+									echo 'site-title shadow">'; } bloginfo('name'); ?></strong>
+							</div>
+							<div class="hidden-xs visible-md col-sm-9 col-md-4 agency-logo">
+								<?php if (get_theme_mod('agency_logo') !== '') {
 								echo '<img class="img-responsive" src="' . esc_url(get_theme_mod("agency_logo")) . '" alt="agency logo">';
 							} ?>
-						</div>
-						<div class="hidden-sm col-md-4 d-print-none">
-							<div class="search-form">
-								<?php if (!get_theme_mod('idaho_search_header', false)) { get_search_form(); } ?>
+							</div>
+							<div class="hidden-sm col-md-4 d-print-none">
+								<div class="search-form">
+									<?php if (!get_theme_mod('idaho_search_header', false)) { 
+										// get_search_form(); 
+										echo '<gcse:search enableAutoComplete="true"></gcse:search>';
+										} ?>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<?php
+				<?php
 			if (get_theme_mod('idaho_gcs_id') === '' || get_theme_mod('idaho_gcs_id') == NULL) {
 				$show_search = (bool)false;
 			}
@@ -92,34 +122,42 @@
 				$show_search = (bool)false;
 			}
 			?>
-			<div class="bg-light">
-				<nav class="navbar navbar-expand-lg" role="navigation">
-					<div class="container">
-						<div class="d-lg-none">
+				<div class="bg-light">
+					<nav class="navbar navbar-expand-lg" role="navigation">
+						<div class="container">
+							<div class="d-lg-none">
+								<?php if ($show_search === true) { ?>
+								<button type="button" class="navbar-search btn-light" data-toggle="collapse" data-target="#search-collapse"
+								 aria-controls="search-collapse" aria-expanded="false" aria-label="Toggle search"><span class="sr-only">Toggle
+										search</span><i class="fas fa-search"></i></button>
+								<?php } ?>
+							</div>
 							<?php if ($show_search === true) { ?>
-								<button type="button" class="navbar-search btn-light" data-toggle="collapse" data-target="#search-collapse" aria-controls="search-collapse" aria-expanded="false" aria-label="Toggle search"><span class="sr-only">Toggle search</span><i class="fas fa-search"></i></button>
-							<?php } ?>
-						</div>
-						<?php if ($show_search === true) { ?>
 							<div class="collapse" id="search-collapse">
 								<div class="d-block d-lg-none d-print-none" aria-label="search">
-									<?php get_search_form(); ?>
+									<?php 
+									// get_search_form(); 
+									echo '<gcse:search enableAutoComplete="true"></gcse:search>';
+									?>
 								</div>
 							</div>
-						<?php } idaho_webmaster_bootstrap_nav(); ?>
-					</div>
-				</nav>
-			</div>
-		</header>
-		<div class="site-content">
-			<?php if (is_front_page() || is_404()) {} else { ?>
-			<div class="container">
-				<div class="row"><nav aria-label="breadcrumbs"><?php
+							<?php } 
+							idaho_webmaster_bootstrap_nav(); ?>
+						</div>
+					</nav>
+				</div>
+			</header>
+			<div class="site-content">
+				<?php if (is_front_page() || is_404()) {} else { ?>
+				<div class="container">
+					<div class="row">
+						<nav aria-label="breadcrumbs">
+							<?php
 					if ('on' !== get_post_meta(get_the_ID(), '_idaho_breadcrumbs', 'off')) {
 						bootstrap_breadcrumb();
 					}
-				?></nav></div>
-			</div>
-			<?php } ?>
-			
-				
+				?>
+						</nav>
+					</div>
+				</div>
+				<?php } ?>

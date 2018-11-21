@@ -1,8 +1,4 @@
 <?php
-/**
- * Shortcode for displaying blog panels.
- */
-
 add_shortcode('recent-posts', 'idaho_webmaster_recent_posts_func');
 if (!function_exists('idaho_webmaster_recent_posts_func')) :
 	function idaho_webmaster_recent_posts_func($atts, $content = '') {
