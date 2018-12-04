@@ -11,6 +11,7 @@ remove_action('shutdown', 'wp_ob_end_flush_all', 1);
 function ai_gutenberg_stuff() {
 	add_theme_support('align-wide');
 	add_theme_support('disable-custom-colors');
+	add_theme_support('wp-block-styles');
 	add_theme_support('editor-font-sizes', array(
 		array(
 			'name'		=> __('small', 'webmaster-bs4'),

@@ -33,12 +33,14 @@ if (is_front_page()) { ?>
 				<?php } ?>
 				<?php if (($slide->post_title !== '') || ($slide->post_content !== '')) { ?>
 				<div class="carousel-caption d-xs-block">
-					<h5>
-						<?php echo esc_html($slide->post_title); ?>
-					</h5>
-					<p>
-						<?php echo esc_html($slide->post_content); ?>
-					</p>
+					<div class="animated fadeInDown">
+						<h4 class="h4-responsive">
+							<?php echo esc_html($slide->post_title); ?>
+						</h4>
+						<p>
+							<?php echo esc_html($slide->post_content); ?>
+						</p>
+					</div>
 				</div>
 				<?php } ?>
 			</div>

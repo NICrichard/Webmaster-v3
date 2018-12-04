@@ -88,8 +88,8 @@
 				<div class="site-branding header-background">
 					<div class="container">
 						<div class="row align-items-center d-flex">
-							<div class="col-xs-12 col-sm-3 col-md-3">
-								<a itemprop="url" href="<?php echo esc_url(home_url('/')); ?>" class="img-fluid logo" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>"
+							<div class="col-9 col-sm-8 col-md-4 col-lg-3">
+								<a itemprop=" url" href="<?php echo esc_url(home_url('/')); ?>" class="img-fluid logo" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>"
 								 rel="home">
 									<img itemprop="logo" <?php if (get_theme_mod('idaho_black_logo')==='' ) { ?> src="
 									<?php echo esc_url(get_stylesheet_directory_uri() . '/img/logo' . ((get_theme_mod('idaho_black_logo', true)) ? '' : '-white') . '.svg'); ?>"
@@ -106,14 +106,32 @@
 								echo '<img class="img-responsive" src="' . esc_url(get_theme_mod("agency_logo")) . '" alt="agency logo">';
 							} ?>
 							</div>
-							<div class="hidden-sm col-md-4 d-print-none">
+							<div class="hidden-sm d-md-flex col-md-3 col-lg-4 d-print-none">
 								<div class="search-form">
 									<?php if (!get_theme_mod('idaho_search_header', false)) {  
 										echo '<gcse:search enableAutoComplete="true"></gcse:search>';
 										} ?>
 								</div>
 							</div>
+							<div class="d-flex d-md-none col-1 pull-right">
+								<?php if ($show_search === true) { ?>
+								<button type="button" class="navbar-search btn-light" data-toggle="collapse" data-target="#search-collapse"
+								 aria-controls="search-collapse" aria-expanded="false" aria-label="Toggle search"><span class="sr-only">Toggle
+										search</span><i class="fas fa-search"></i></button>
+								<?php } ?>
+							</div>
 						</div>
+						<?php if ($show_search === true) { ?>
+						<div class="row">
+							<div class="collapse" id="search-collapse">
+								<div class="d-block d-lg-none d-print-none" aria-label="search">
+									<?php 
+									echo '<gcse:search enableAutoComplete="true"></gcse:search>';
+									?>
+								</div>
+							</div>
+						</div>
+						<?php } ?>
 					</div>
 				</div>
 				<?php
@@ -127,23 +145,7 @@
 				<div class="bg-light">
 					<nav class="navbar navbar-expand-lg">
 						<div class="container">
-							<div class="d-lg-none">
-								<?php if ($show_search === true) { ?>
-								<button type="button" class="navbar-search btn-light" data-toggle="collapse" data-target="#search-collapse"
-								 aria-controls="search-collapse" aria-expanded="false" aria-label="Toggle search"><span class="sr-only">Toggle
-										search</span><i class="fas fa-search"></i></button>
-								<?php } ?>
-							</div>
-							<?php if ($show_search === true) { ?>
-							<div class="collapse" id="search-collapse">
-								<div class="d-block d-lg-none d-print-none" aria-label="search">
-									<?php 
-									echo '<gcse:search enableAutoComplete="true"></gcse:search>';
-									?>
-								</div>
-							</div>
-							<?php } 
-							idaho_webmaster_bootstrap_nav(); ?>
+							<?php idaho_webmaster_bootstrap_nav(); ?>
 						</div>
 					</nav>
 				</div>
