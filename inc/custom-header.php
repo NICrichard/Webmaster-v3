@@ -18,7 +18,7 @@ add_action('after_setup_theme', 'idaho_webmaster_custom_header_setup');
 
 if (!function_exists('idaho_webmaster_header_style')) :
 function idaho_webmaster_header_style() {
-	$header_text_color = get_header_textcolor();
+	// $header_text_color = get_header_textcolor();
 	$header_image = get_header_image();
 	?>
 <style type="text/css">
@@ -79,10 +79,10 @@ function idaho_webmaster_admin_header_image() {
 ?>
 <div id="headimg">
 	<h1 class="displaying-header-text">
-		<a id="name" style="<?php echo esc_attr('color: #' . get_header_textcolor()); ?>" onclick="return false;" href="<?php echo esc_url(home_url('/')); ?>">
+		<a id="name" style="<?php // echo esc_attr('color: #' . get_header_textcolor()); ?>" onclick="return false;" href="<?php echo esc_url(home_url('/')); ?>">
 			<?php bloginfo('name'); ?></a>
 	</h1>
-	<div class="displaying-header-text" id="desc" style="<?php echo esc_attr('color: #' . get_header_textcolor()); ?>">
+	<div class="displaying-header-text" id="desc" style="<?php //echo esc_attr('color: #' . get_header_textcolor()); ?>">
 		<?php bloginfo('description'); ?>
 	</div>
 	<?php if (get_header_image()) : ?>

@@ -21,10 +21,6 @@ body {
 	overflow-x: hidden;
 }
 
-/* .sidebars {
-	max-width: 30%;
-} */
-
 h1,
 h2,
 h3,
@@ -137,7 +133,6 @@ a>i:hover {
 	position: absolute;
 	top: -40px;
 	left: 0;
-	/* background: #BF1722; */
 	color: white;
 	padding: 8px;
 	z-index: 100;
@@ -216,8 +211,12 @@ a>i:hover {
 	background: lightslategray;
 	height: auto;
 	min-height: 200px;
-	/* max-height: 350px; */
 	padding-top: 20px;
+}
+
+.event-area .no-events {
+	text-align: center;
+	font-size: 1.8em;
 }
 
 /* ================ TOP GRAY NAV ================ */
@@ -286,7 +285,6 @@ a>i:hover {
 
 .logo>img {
 	width: 100%;
-	/* min-width: 100%; */
 	max-width: 250px;
 }
 
@@ -335,17 +333,19 @@ a>i:hover {
 	background: transparent !important;
 }
 
+.gsc-input {
+	background: none !important;
+	text-indent: 0 !important;
+}
+
 .heading-sm,
 .site-title {
 	color: #fff !important;
-	/* margin: auto; */
 }
 
-/* 
-.site-title a:hover {
-	text-decoration: none;
+i.fontsizer {
+	cursor: pointer;
 }
-*/
 
 /* ================ end of HEADER ================ */
 
@@ -411,6 +411,10 @@ a {
 .nav-link {
 	display: inline !important;
 	padding: .65rem !important;
+}
+
+.navbar {
+	padding: 0;
 }
 
 .navbar-toggler {
@@ -534,12 +538,6 @@ li.breadcrumb-item {
 	color: #fff;
 	padding-top: 20px;
 }
-
-/* 
-footer {
-	margin-top: 30px;
-}
-*/
 
 .footer-widget {
 	float: left;
@@ -689,6 +687,10 @@ footer {
 
 .widget-title {
 	font-size: 1.3rem;
+}
+
+.wpcf7-form .btn-primary {
+	color: #000;
 }
 
 /* ================ Flex styles ================ */

@@ -55,7 +55,10 @@
 		gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
 		var s = document.getElementsByTagName('script')[0];
 		s.parentNode.insertBefore(gcse, s);
-  	})();
+	  })();
+	  window.onload = function() {
+		  document.getElementById('gsc-i-id1').placeholder = "Agency Search";
+	  };
 </script>
 <?php } ?>
 
@@ -76,8 +79,8 @@
 				<div class="col-xs-11 col-sm-11 col-md-5">
 					<?php idaho_webmaster_bs_nav_top(); ?>
 				</div>
-				<div class="hidden-xs visible-md col-md-2 col-lg-1 pull-right" style="font-size:8pt;padding-top:3px;"><i class="fas fa-font fa-2x"
-					 onclick="resizeText(1)"></i> | <i class="fas fa-font" onclick="resizeText(-1)"></i></div>
+				<div class="hidden-xs visible-md col-md-2 col-lg-1 pull-right" style="font-size:8pt;padding-top:3px;"><i class="fas fa-font fa-2x fontsizer"
+					 onclick="resizeText(1)"></i> | <i class="fas fa-font fontsizer" onclick="resizeText(-1)"></i></div>
 			</div>
 		</div>
 		<div id="page" class="hfeed site">
@@ -105,8 +108,7 @@
 							</div>
 							<div class="hidden-sm col-md-4 d-print-none">
 								<div class="search-form">
-									<?php if (!get_theme_mod('idaho_search_header', false)) { 
-										// get_search_form(); 
+									<?php if (!get_theme_mod('idaho_search_header', false)) {  
 										echo '<gcse:search enableAutoComplete="true"></gcse:search>';
 										} ?>
 								</div>
@@ -123,7 +125,7 @@
 			}
 			?>
 				<div class="bg-light">
-					<nav class="navbar navbar-expand-lg" role="navigation">
+					<nav class="navbar navbar-expand-lg">
 						<div class="container">
 							<div class="d-lg-none">
 								<?php if ($show_search === true) { ?>
@@ -136,7 +138,6 @@
 							<div class="collapse" id="search-collapse">
 								<div class="d-block d-lg-none d-print-none" aria-label="search">
 									<?php 
-									// get_search_form(); 
 									echo '<gcse:search enableAutoComplete="true"></gcse:search>';
 									?>
 								</div>
@@ -153,10 +154,10 @@
 					<div class="row">
 						<nav aria-label="breadcrumbs">
 							<?php
-					if ('on' !== get_post_meta(get_the_ID(), '_idaho_breadcrumbs', 'off')) {
-						bootstrap_breadcrumb();
-					}
-				?>
+							if ('on' !== get_post_meta(get_the_ID(), '_idaho_breadcrumbs', 'off')) {
+								bootstrap_breadcrumb();
+							}
+							?>
 						</nav>
 					</div>
 				</div>

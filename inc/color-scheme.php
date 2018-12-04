@@ -37,7 +37,7 @@ class Webmaster_Color_Scheme {
             'link_color'        => __('Link color', 'webmaster-bs4'),
             'map_color'         => __('USA Map color', 'webmaster-bs4'),
             'footer_bkg_color'  => __('Footer background color', 'webmaster-bs4'),
-            'header_color'      => __('Header text color', 'webmaster-bs4'),
+            'header_color'      => __('Page Heading color', 'webmaster-bs4'),
             'panel_color'       => __('Panel color', 'webmaster-bs4'),
         );
 
@@ -68,7 +68,7 @@ class Webmaster_Color_Scheme {
     }
 
     public function customize_js() {
-        wp_enqueue_script('webmaster-bs4-color-scheme', get_template_directory_uri() . '/js/color-scheme.js', array('customize-controls', 'iris', 'underscore', 'wp-util'), '', true);
+        wp_enqueue_script('webmaster-bs4-color-scheme', get_template_directory_uri() . '/js/color-scheme-controls.js', array('customize-controls', 'iris', 'underscore', 'wp-util'), '', true);
         wp_localize_script('webmaster-bs4-color-scheme', 'WebmasterColorScheme', $this->get_color_schemes());
     }
 
@@ -81,10 +81,10 @@ class Webmaster_Color_Scheme {
             'panel_color'       => '{{ data.panel_color }}',
         );
         ?>
-        <script type="text/html" id="tmpl-color-scheme">
-            <?php echo $this->get_css($colors); ?>
+<script type="text/html" id="tmpl-color-scheme">
+    <?php echo $this->get_css($colors); ?>
         </script>
-        <?php
+<?php
     }
 
     public function customize_preview_js() {

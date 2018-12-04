@@ -6,7 +6,7 @@ function idaho_webmaster_customize_register($wp_customize) {
 	$color_scheme = idaho_webmaster_get_color_scheme();
 	$wp_customize->get_setting('blogname')->transport         = 'postMessage';
 	$wp_customize->get_setting('blogdescription')->transport  = 'postMessage';
-    $wp_customize->get_setting('header_textcolor')->transport = 'postMessage';
+   // $wp_customize->get_setting('header_textcolor')->transport = 'postMessage';
 	$wp_customize->remove_control('background_repeat');
 	$wp_customize->remove_control('background_attachment');
 
@@ -574,10 +574,10 @@ function idaho_webmaster_color_scheme_css_template() {
 		'idaho_color_home_panel'  	=> '{{ data.idaho_color_home_panel }}',
 	);
 	?>
-	<script type="text/html" id="tmpl-webmaster-bs4-color-scheme">
-		<?php echo idaho_webmaster_get_color_scheme_css($colors); ?>
+<script type="text/html" id="tmpl-webmaster-bs4-color-scheme">
+	<?php echo idaho_webmaster_get_color_scheme_css($colors); ?>
 	</script>
-	<?php
+<?php
 }
 add_action('customize_controls_print_footer_scripts', 'idaho_webmaster_color_scheme_css_template');
 
