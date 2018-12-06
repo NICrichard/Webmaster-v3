@@ -4,17 +4,17 @@ if (is_front_page()) { ?>
 	<div id="idahoSlider" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
 			<?php
-		$c = 0;
-		$sr = get_posts(array('post_type' => 'slider', 'posts_per_page' => 5));
-		foreach($sr as $s) {
-			echo '<li data-target="#idahoSlider" data-slide-to="'. $c . '"';
-			if ($c == 0) {
-				echo ' class="active"';
+			$c = 0;
+			$sr = get_posts(array('post_type' => 'slider', 'posts_per_page' => 5));
+			foreach($sr as $s) {
+				echo '<li data-target="#idahoSlider" data-slide-to="'. $c . '"';
+				if ($c == 0) {
+					echo ' class="active"';
+				}
+				echo '></li>';
+				$c++;
 			}
-			echo '></li>';
-			$c++;
-		}
-		?>
+			?>
 		</ol>
 		<div class="carousel-inner" role="listbox">
 			<?php 
@@ -27,7 +27,8 @@ if (is_front_page()) { ?>
 				<?php if ($link !== '') { ?>
 				<a href="<?php echo $link; ?>" target="_blank">
 					<?php } ?>
-					<img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id($slide->ID)); ?>" class="d-block img-responsive">
+					<img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id($slide->ID)); ?>" class="d-block img-responsive"
+					 alt="<?php echo get_post_meta(get_post_thumbnail_id($slide->ID), '_wp_attachment_image_alt', true); ?>">
 					<?php if ($link !== '') { ?>
 				</a>
 				<?php } ?>

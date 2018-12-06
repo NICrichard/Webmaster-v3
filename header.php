@@ -70,6 +70,14 @@
   		<p><a href="https://support.microsoft.com/en-us/help/17621" target="_blank" rel="noopener noreferrer" class="alert-link">Upgrade Internet Explorer</a> or install a <a href="https://browsehappy.com" target="_blank" rel="noopener noreferrer" class="alert-link">modern browser</a>, or contact your system administrator.</p>
   	</div>
 	<![endif]-->
+	<?php
+		if (get_theme_mod('idaho_gcs_id') === '' || get_theme_mod('idaho_gcs_id') == NULL) {
+			$show_search = (bool)false;
+		}
+		if (get_theme_mod('idaho_search_header', false)) {
+			$show_search = (bool)false;
+		}
+	?>
 	<div class="content-wrapper">
 		<a href="#main" class="skip-link">Skip to main content</a>
 		<div class="top-navigation d-print-none">
@@ -125,23 +133,13 @@
 						<div class="row">
 							<div class="collapse" id="search-collapse">
 								<div class="d-block d-lg-none d-print-none" aria-label="search">
-									<?php 
-									echo '<gcse:search enableAutoComplete="true"></gcse:search>';
-									?>
+									<gcse:search enableAutoComplete="true"></gcse:search>
 								</div>
 							</div>
 						</div>
 						<?php } ?>
 					</div>
 				</div>
-				<?php
-			if (get_theme_mod('idaho_gcs_id') === '' || get_theme_mod('idaho_gcs_id') == NULL) {
-				$show_search = (bool)false;
-			}
-			if (get_theme_mod('idaho_search_header', false)) {
-				$show_search = (bool)false;
-			}
-			?>
 				<div class="bg-light">
 					<nav class="navbar navbar-expand-lg">
 						<div class="container">
